@@ -1,0 +1,38 @@
+{
+  "agent_name": "",
+  "timestamp": "",
+  "project_root": "",
+  "python": {
+    "available": false,
+    "executable": "",
+    "version": ""
+  },
+  "tushare": {
+    "package_available": false,
+    "token_present": false,
+    "status": "unknown"
+  },
+  "yahoo_cli": {
+    "uv_available": false,
+    "tools_yf_exists": false,
+    "help_smoke_ok": false,
+    "status": "unknown"
+  },
+  "web_search": {
+    "declared": "unknown",
+    "notes": "Set manually because local scripts cannot reliably detect agent-native search."
+  },
+  "browser": {
+    "declared": "unknown",
+    "notes": "Set manually because local scripts cannot reliably detect agent-native browser tools."
+  },
+  "git": {
+    "available": false,
+    "version": ""
+  },
+  "file_write": {
+    "available": true,
+    "notes": "Assumed when this file can be written."
+  },
+  "limitations": []
+}

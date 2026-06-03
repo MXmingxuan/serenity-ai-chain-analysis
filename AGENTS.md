@@ -4,7 +4,12 @@
 
 1. `AGENT_FRAMEWORK.md`
 2. `FRAMEWORK_ADDENDUM_CROSS_MARKET.md`
-3. `templates/run_checklist.md`
+3. `AGENT_CAPABILITY_MATRIX.md`
+4. `SEARCH_PROTOCOL.md`
+5. `CONTEXT_PACK_PROTOCOL.md`
+6. `RUN_TRACE_SCHEMA.md`
+7. `MEMORY_TAXONOMY.md`
+8. `templates/run_checklist.md`
 
 ## 强制规则
 
@@ -16,6 +21,9 @@
 - 008 最终报告如果重点讨论 A 股，必须有“全球竞争与对标约束”段落。
 - 008 Markdown 报告仍是源文件；如需要更好展示效果，应在 `html/008_final_report.html` 额外输出静态 HTML 页面。
 - HTML 页面必须链接回 Markdown 报告和 source index，并保留证据边界、数据日期和“不构成投资建议”提示。
+- 启动前必须运行或手工填写 capability preflight；没有 web search 且没有用户提供 source pack 时，不得独立执行 `002` 到 `005`。
+- 搜索密集步骤必须创建或更新 search packet，重要来源必须进入 source index 或 evidence ledger。
+- 每个 run 应维护 `state/run_trace.jsonl`，记录搜索、数据拉取、报告生成、校验和 HTML 输出等事件。
 - 每次运行结束前执行：
 
 ```powershell

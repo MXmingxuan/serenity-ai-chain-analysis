@@ -1,6 +1,31 @@
 research_object: ""
 run_date: ""
 current_step: 0
+trace_file: "state/run_trace.jsonl"
+
+agent_capabilities:
+  report_file: "state/capability_report.json"
+  agent_name: ""
+  web_search: "unknown"
+  browser: "unknown"
+  python: "unknown"
+  tushare: "unknown"
+  yahoo_cli: "unknown"
+  git: "unknown"
+  limitations: []
+
+context_pack:
+  protocol_file: "CONTEXT_PACK_PROTOCOL.md"
+  current_step_context: []
+  excluded_context: []
+  compression_notes: ""
+
+memory_updates:
+  project_rules: []
+  run_state: []
+  entity_memory: []
+  evidence_memory: []
+  execution_memory: []
 
 market_scope:
   primary_focus: []

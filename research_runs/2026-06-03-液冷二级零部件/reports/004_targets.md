@@ -65,4 +65,8 @@
 - 最值得深挖的标的：川环科技、中航光电、华丰科技、大元泵业。
 - 需要降级或观察：瑞可达、永贵电器、科创新源、同飞股份、三花智控、银轮股份、飞荣达。
 - 下一步需要证据分级：优先拆事实、推理和市场叙事。
+## Cross-Market Coverage Gap
 
+This historical 004 target map is A-share and China-listed-company heavy. It did not fully normalize US, HK, Taiwan, Japan, or Europe liquid-cooling component and system comparables into the same candidate table.
+
+Missing coverage should be treated as a known gap, not as evidence that overseas competitors are unimportant. Future reruns should add overseas component suppliers, system vendors, and market-data snapshots before using this step for cross-market comparison.

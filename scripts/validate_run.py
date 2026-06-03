@@ -25,6 +25,8 @@ EXPECTED_REPORTS = [
     "008_final_report.md",
 ]
 
+URL_MARKERS = ("http://", "https://", "file:", ".md", ".pdf", ".csv")
+
 MARKET_ALIASES = {
     "US": {"US", "USA", "美股", "NYSE", "NASDAQ"},
     "HK": {"HK", "HKG", "港股"},
@@ -82,6 +84,40 @@ def main(argv: list[str]) -> int:
     source_index = run_dir / "sources" / "source_index.md"
     if not source_index.exists():
         warnings.append("missing source index: sources/source_index.md")
+    else:
+        source_text = read_text(source_index)
+        if not any(marker in source_text for marker in URL_MARKERS):
+            warnings.append("source_index.md may not contain traceable URLs or file paths")
+
+    trace_path = run_dir / "state" / "run_trace.jsonl"
+    if not trace_path.exists():
+        warnings.append("missing execution trace: state/run_trace.jsonl")
+    else:
+        for line_no, line in enumerate(read_text(trace_path).splitlines(), 1):
+            if not line.strip():
+                continue
+            try:
+                import json
+
+                event = json.loads(line)
+            except Exception as exc:
+                errors.append(f"run_trace.jsonl parse failed at line {line_no}: {exc}")
+                continue
+            required_trace_fields = {
+                "timestamp",
+                "step",
+                "agent",
+                "action_type",
+                "tool_or_source",
+                "input_summary",
+                "output_summary",
+                "status",
+                "error",
+                "artifacts_changed",
+            }
+            missing = sorted(required_trace_fields - set(event))
+            if missing:
+                errors.append(f"run_trace.jsonl line {line_no} missing fields: {', '.join(missing)}")
 
     csv_paths = [
         run_dir / "state" / "evidence_ledger.csv",
@@ -169,7 +205,25 @@ def main(argv: list[str]) -> int:
             if token in targets
         )
         if market_mentions < 2:
-            warnings.append("004_targets.md appears to have weak cross-market coverage")
+            gap_markers = ["未覆盖", "缺口", "gap", "missing", "无直接标的", "暂未发现", "数据不可得"]
+            if any(marker in targets.lower() for marker in gap_markers):
+                warnings.append("004_targets.md appears cross-market limited, but contains a gap explanation")
+            else:
+                warnings.append("004_targets.md appears to have weak cross-market coverage")
+
+    pricing_path = reports_dir / "006_pricing.md"
+    if pricing_path.exists():
+        pricing = read_text(pricing_path)
+        market_data_markers = [
+            "price_snapshot.csv",
+            "valuation_snapshot.csv",
+            "liquidity_snapshot.csv",
+            "market_data",
+            "Tushare",
+            "Yahoo",
+        ]
+        if not any(marker in pricing for marker in market_data_markers):
+            warnings.append("006_pricing.md may not reference structured market data")
 
     final_path = reports_dir / "008_final_report.md"
     if final_path.exists():
@@ -186,6 +240,8 @@ def main(argv: list[str]) -> int:
             html_text = read_text(html_report)
             if "../reports/008_final_report.md" not in html_text:
                 warnings.append("html report does not link back to Markdown source")
+            if "../sources/source_index.md" not in html_text:
+                warnings.append("html report does not link to source index")
             if "<!doctype html>" not in html_text[:80].lower():
                 warnings.append("html report is missing a doctype")
 

@@ -30,6 +30,11 @@
 
 - `AGENT_FRAMEWORK.md`：主研究框架。
 - `FRAMEWORK_ADDENDUM_CROSS_MARKET.md`：跨市场控制层，防止把“重点研究 A 股/中国上市公司”误执行成“只研究 A 股/中国上市公司”。
+- `AGENT_CAPABILITY_MATRIX.md`：跨 agent 运行前的能力矩阵和缺失能力处理规则。
+- `SEARCH_PROTOCOL.md`：搜索步骤的来源优先级、search packet 和证据落账规则。
+- `CONTEXT_PACK_PROTOCOL.md`：000-009 每一步的 just-in-time context 加载规则。
+- `RUN_TRACE_SCHEMA.md`：`state/run_trace.jsonl` 的执行日志格式。
+- `MEMORY_TAXONOMY.md`：项目规则、run state、entity、evidence、execution memory 的分层规则。
 - `AGENTS.md`：给后续 agent 的项目入口规则。
 - `PROJECT_RETRO_AND_OPTIMIZATION.md`：基于两个案例复盘后的问题清单、根因和优化方向。
 
@@ -94,6 +99,14 @@ python scripts\validate_run.py "research_runs\YYYY-MM-DD-研究对象"
 - `004_targets.md` 是否有跨市场覆盖；
 - `symbol_universe.csv` 是否只覆盖单一市场；
 - 是否误写入 Tushare token。
+
+启动一个新 run 前，建议先运行能力预检：
+
+```powershell
+python scripts\capability_preflight.py --run-dir "research_runs\YYYY-MM-DD-研究对象" --agent-name Codex --web-search yes --browser yes
+```
+
+该脚本会生成 `state/capability_report.json`，只记录 token 是否存在，不记录 token 内容。
 
 ## HTML 报告
 
