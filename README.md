@@ -95,6 +95,20 @@ python scripts\validate_run.py "research_runs\YYYY-MM-DD-研究对象"
 - `symbol_universe.csv` 是否只覆盖单一市场；
 - 是否误写入 Tushare token。
 
+## HTML 报告
+
+Markdown 是研究源文件，HTML 是展示层。每个研究 run 可以在 `html/` 目录输出静态页面：
+
+```text
+research_runs/YYYY-MM-DD-研究对象/html/008_final_report.html
+```
+
+当前示例：
+
+- `research_runs/2026-06-03-液冷二级零部件/html/008_final_report.html`
+
+HTML 页面应保留 Markdown 链接、来源索引、证据边界和“不构成投资建议”的提示。视觉主题可以按研究对象选择；液冷案例使用了偏 Bloomberg Terminal 的黑底高密度信息屏风格。
+
 ## GitHub 同步注意
 
 可以上传研究框架、模板、脚本、提示词、案例报告和不含密钥的数据文件。不要上传本地环境变量、私密 token、临时缓存、`__pycache__` 或虚拟环境目录。

@@ -177,6 +177,18 @@ def main(argv: list[str]) -> int:
         if "全球" not in final_text and "海外" not in final_text and "对标" not in final_text:
             warnings.append("008_final_report.md may be missing global comparison constraints")
 
+    html_dir = run_dir / "html"
+    if html_dir.exists():
+        html_report = html_dir / "008_final_report.html"
+        if not html_report.exists():
+            errors.append("html directory exists but html/008_final_report.html is missing")
+        else:
+            html_text = read_text(html_report)
+            if "../reports/008_final_report.md" not in html_text:
+                warnings.append("html report does not link back to Markdown source")
+            if "<!doctype html>" not in html_text[:80].lower():
+                warnings.append("html report is missing a doctype")
+
     token = os.environ.get("TUSHARE_TOKEN", "")
     token_prefix = token[:8] if token else ""
     secret_hits: list[str] = []

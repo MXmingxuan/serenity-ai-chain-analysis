@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>液冷二级零部件 | AI 供应链瓶颈研究报告</title>
+  <style>
+    :root {
+      --bg: #050505;
+      --panel: #0b0d0b;
+      --panel-2: #10130f;
+      --grid: #2b332b;
+      --grid-soft: #1b211b;
+      --text: #eeeedf;
+      --muted: #9da592;
+      --amber: #ffb000;
+      --amber-soft: #3a2a00;
+      --green: #00d46a;
+      --red: #ff4d4d;
+      --cyan: #61e7ff;
+      --white-dim: #cbcdbb;
+      --mono: "IBM Plex Mono", "Cascadia Mono", Consolas, "SFMono-Regular", monospace;
+      --sans: "Inter", "Segoe UI", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      letter-spacing: 0;
+    }
+
+    a { color: var(--amber); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .terminal {
+      min-height: 100vh;
+      border-top: 4px solid var(--amber);
+      background:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.014) 1px, transparent 1px),
+        var(--bg);
+      background-size: 100% 28px, 28px 100%;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 10px 18px;
+      border-bottom: 1px solid var(--grid);
+      background: rgba(5, 5, 5, .94);
+      backdrop-filter: blur(8px);
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .ticker {
+      display: flex;
+      gap: 14px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker b { color: var(--amber); font-weight: 700; }
+    .up { color: var(--green); }
+    .down { color: var(--red); }
+    .flat { color: var(--white-dim); }
+
+    .wrap {
+      width: min(1440px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 18px 0 42px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(360px, .9fr);
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .hero, .panel {
+      background: rgba(11, 13, 11, .96);
+      border: 1px solid var(--grid);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+    }
+
+    .hero {
+      padding: 22px;
+      min-height: 300px;
+      display: grid;
+      align-content: space-between;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 8px;
+      border: 1px solid var(--grid);
+      color: var(--muted);
+      background: #070807;
+    }
+
+    .tag.hot { color: var(--amber); border-color: #5a4200; background: var(--amber-soft); }
+    .tag.risk { color: var(--red); border-color: #5c2020; background: #210909; }
+    .tag.ok { color: var(--green); border-color: #0b5b34; background: #061b10; }
+
+    h1 {
+      margin: 0 0 16px;
+      max-width: 900px;
+      font-family: var(--mono);
+      font-size: clamp(34px, 5vw, 72px);
+      line-height: .95;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .subtitle {
+      max-width: 960px;
+      margin: 0;
+      color: var(--white-dim);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .stat {
+      border-top: 1px solid var(--grid);
+      padding-top: 10px;
+      font-family: var(--mono);
+    }
+
+    .stat .label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .stat .value {
+      color: var(--amber);
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .brief {
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .brief h2, .panel h2 {
+      margin: 0;
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--grid);
+      color: var(--amber);
+      background: #080908;
+      font-family: var(--mono);
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .brief-card {
+      border: 1px solid var(--grid-soft);
+      padding: 12px;
+      background: var(--panel-2);
+    }
+
+    .brief-card .k {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+
+    .brief-card .v {
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+
+    .span-4 { grid-column: span 4; }
+    .span-5 { grid-column: span 5; }
+    .span-7 { grid-column: span 7; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: span 12; }
+
+    .panel-body {
+      padding: 14px;
+    }
+
+    .chain {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      font-family: var(--mono);
+    }
+
+    .node {
+      min-height: 98px;
+      padding: 10px;
+      border: 1px solid var(--grid);
+      background: #070807;
+      display: grid;
+      align-content: space-between;
+    }
+
+    .node small { color: var(--muted); font-size: 10px; }
+    .node strong { color: var(--text); font-size: 13px; line-height: 1.35; }
+    .node.focus { border-color: var(--amber); background: #141000; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+
+    th, td {
+      padding: 8px 9px;
+      border-bottom: 1px solid var(--grid-soft);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--amber);
+      background: #080908;
+      font-weight: 700;
+      position: sticky;
+      top: 45px;
+    }
+
+    tr:hover td { background: #10140f; }
+    .num { text-align: right; white-space: nowrap; }
+    .rank-a { color: var(--green); font-weight: 800; }
+    .rank-b { color: var(--amber); font-weight: 800; }
+    .rank-ref { color: var(--muted); }
+
+    .bars {
+      display: grid;
+      gap: 8px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 82px 1fr 62px;
+      gap: 8px;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+
+    .bar-track {
+      height: 16px;
+      border: 1px solid var(--grid);
+      background: #080908;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: var(--green);
+    }
+
+    .bar-fill.warn { background: var(--amber); }
+    .bar-fill.danger { background: var(--red); }
+
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .score {
+      border: 1px solid var(--grid-soft);
+      padding: 10px;
+      background: var(--panel-2);
+      font-family: var(--mono);
+    }
+
+    .score b {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .score span {
+      color: var(--amber);
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--white-dim);
+      line-height: 1.75;
+    }
+
+    .list li::marker { color: var(--amber); }
+
+    .matrix {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .matrix-card {
+      border: 1px solid var(--grid-soft);
+      padding: 12px;
+      background: #090b09;
+      min-height: 142px;
+    }
+
+    .matrix-card h3 {
+      margin: 0 0 8px;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--amber);
+    }
+
+    .matrix-card p {
+      margin: 0;
+      color: var(--white-dim);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    footer {
+      margin-top: 14px;
+      padding: 14px 0;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: space-between;
+      border-top: 1px solid var(--grid);
+    }
+
+    @media (max-width: 1100px) {
+      header { grid-template-columns: 1fr; }
+      .span-4, .span-5, .span-7, .span-8 { grid-column: span 12; }
+      .chain { grid-template-columns: 1fr; }
+      .score-grid, .matrix, .hero-bottom { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 720px) {
+      .wrap { width: min(100vw - 20px, 1440px); }
+      .topbar { grid-template-columns: 1fr; }
+      h1 { font-size: 38px; }
+      .score-grid, .matrix, .hero-bottom { grid-template-columns: 1fr; }
+      .panel-body { overflow-x: auto; }
+      th { position: static; }
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal">
+    <div class="topbar">
+      <div class="ticker" aria-label="market snapshot">
+        <span><b>LC-PARTS</b> RESEARCH RADAR</span>
+        <span>川环科技 <span class="up">12M +24.9%</span></span>
+        <span>中航光电 <span class="down">12M -11.1%</span></span>
+        <span>华丰科技 <span class="up">12M +158.0%</span></span>
+        <span>大元泵业 <span class="up">12M +147.9%</span></span>
+        <span>瑞可达 <span class="up">12M +127.7%</span></span>
+      </div>
+      <div>AS OF 2026-06-02 · TUSHARE SNAPSHOT</div>
+    </div>
+
+    <main class="wrap">
+      <header>
+        <section class="hero">
+          <div>
+            <div class="meta-row">
+              <span class="tag hot">Theme: Liquid Cooling Tier-2 Parts</span>
+              <span class="tag ok">Demand: Real</span>
+              <span class="tag risk">Trade: Expectations Heavy</span>
+              <span class="tag">Mode: Research Radar</span>
+            </div>
+            <h1>液冷二级零部件</h1>
+            <p class="subtitle">Blackwell/Rubin 机架级液冷把机会从“液冷龙头”继续拆到冷板、快接头、管路、manifold、泵阀、密封和冷却液。产业逻辑真实，但市场已经交易，下一步必须盯订单、客户认证、收入占比和毛利率。</p>
+          </div>
+          <div class="hero-bottom">
+            <div class="stat"><span class="label">Supply Score</span><span class="value">3.1 / 5</span></div>
+            <div class="stat"><span class="label">A Candidates</span><span class="value">4</span></div>
+            <div class="stat"><span class="label">Evidence Gap</span><span class="value">Revenue %</span></div>
+            <div class="stat"><span class="label">Action</span><span class="value">Deep Dive</span></div>
+          </div>
+        </section>
+
+        <aside class="brief">
+          <h2>Executive Monitor</h2>
+          <div class="brief-card">
+            <span class="k">ONE-LINE CONCLUSION</span>
+            <span class="v">高优先级深挖，但只适合拆零部件，不适合泛买液冷。</span>
+          </div>
+          <div class="brief-card">
+            <span class="k">BEST STARTING POINT</span>
+            <span class="v">川环科技、中航光电；华丰科技和大元泵业进入 A/B，但估值或收入占比需严格验证。</span>
+          </div>
+          <div class="brief-card">
+            <span class="k">FIRST REJECTION</span>
+            <span class="v">液冷收入占比低于 5%-10%，且没有批量订单或毛利率改善。</span>
+          </div>
+          <div class="brief-card">
+            <span class="k">FILES</span>
+            <span class="v"><a href="../reports/008_final_report.md">Markdown report</a> · <a href="../sources/source_index.md">Source index</a> · <a href="../market_data/price_snapshot.csv">Market data</a></span>
+          </div>
+        </aside>
+      </header>
+
+      <section class="grid">
+        <article class="panel span-12">
+          <h2>Supply Chain Transmission</h2>
+          <div class="panel-body">
+            <div class="chain">
+              <div class="node"><small>01 DEMAND SOURCE</small><strong>AI 训练 / 推理功率密度上升</strong></div>
+              <div class="node"><small>02 PLATFORM</small><strong>Blackwell / GB200 / GB300 / Rubin</strong></div>
+              <div class="node"><small>03 SYSTEM</small><strong>机架级液冷 · CDU · 冷却分配</strong></div>
+              <div class="node focus"><small>04 BOTTLENECK</small><strong>冷板 · 快接 · 管路 · manifold · 泵阀 · 密封</strong></div>
+              <div class="node"><small>05 EQUITY MAP</small><strong>中国上市公司 + 海外竞争对标</strong></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel span-8">
+          <h2>Candidate Board</h2>
+          <div class="panel-body">
+            <table>
+              <thead>
+                <tr>
+                  <th>公司</th>
+                  <th>环节</th>
+                  <th>收入弹性</th>
+                  <th>拥挤度</th>
+                  <th>优先级</th>
+                  <th>第一验证点</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>川环科技</td><td>液冷管路</td><td>中高</td><td>低中</td><td class="rank-a">A</td><td>客户验证、批量供货、UL/V0、收入占比</td></tr>
+                <tr><td>中航光电</td><td>流体连接器 / 管路 / 液冷板</td><td>中</td><td>低中</td><td class="rank-a">A</td><td>数据中心液冷收入拆分、核心客户</td></tr>
+                <tr><td>华丰科技</td><td>电 / 光 / 液集成连接器</td><td>高</td><td>极高</td><td class="rank-b">A/B</td><td>估值消化、液冷接口真实订单</td></tr>
+                <tr><td>大元泵业</td><td>液冷泵</td><td>高</td><td>高</td><td class="rank-b">A/B</td><td>数据中心液冷泵收入占比是否放大</td></tr>
+                <tr><td>瑞可达</td><td>连接器 / 液冷连接</td><td>中</td><td>高</td><td class="rank-b">B</td><td>UQD / 数据中心液冷连接器证据</td></tr>
+                <tr><td>永贵电器</td><td>流体连接器</td><td>中</td><td>中</td><td class="rank-b">B</td><td>液冷收入和客户绑定</td></tr>
+                <tr><td>科创新源</td><td>材料 / 冷板 / 管路</td><td>高</td><td>极高</td><td class="rank-b">B</td><td>主题映射转订单证据</td></tr>
+                <tr><td>英维克 / 高澜 / 申菱</td><td>液冷系统 / 龙头参考</td><td>高</td><td>高</td><td class="rank-ref">参考</td><td>作为系统龙头估值锚，不是本轮核心</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="panel span-4">
+          <h2>Supply Bottleneck Score</h2>
+          <div class="panel-body">
+            <div class="score-grid">
+              <div class="score"><b>扩产周期</b><span>3</span></div>
+              <div class="score"><b>技术壁垒</b><span>4</span></div>
+              <div class="score"><b>客户验证</b><span>4</span></div>
+              <div class="score"><b>替代难度</b><span>3</span></div>
+              <div class="score"><b>竞争格局</b><span>3</span></div>
+              <div class="score"><b>产能利用</b><span>3</span></div>
+              <div class="score"><b>资本强度</b><span>2</span></div>
+              <div class="score"><b>价格传导</b><span>3</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel span-7">
+          <h2>12M Price Move Monitor</h2>
+          <div class="panel-body">
+            <div class="bars">
+              <div class="bar-row"><span>申菱环境</span><div class="bar-track"><div class="bar-fill danger" style="width:100%"></div></div><span class="up">+170.7%</span></div>
+              <div class="bar-row"><span>华丰科技</span><div class="bar-track"><div class="bar-fill danger" style="width:93%"></div></div><span class="up">+158.0%</span></div>
+              <div class="bar-row"><span>大元泵业</span><div class="bar-track"><div class="bar-fill danger" style="width:87%"></div></div><span class="up">+147.9%</span></div>
+              <div class="bar-row"><span>科创新源</span><div class="bar-track"><div class="bar-fill danger" style="width:81%"></div></div><span class="up">+138.1%</span></div>
+              <div class="bar-row"><span>瑞可达</span><div class="bar-track"><div class="bar-fill danger" style="width:75%"></div></div><span class="up">+127.7%</span></div>
+              <div class="bar-row"><span>飞荣达</span><div class="bar-track"><div class="bar-fill warn" style="width:72%"></div></div><span class="up">+122.8%</span></div>
+              <div class="bar-row"><span>川环科技</span><div class="bar-track"><div class="bar-fill" style="width:15%"></div></div><span class="up">+24.9%</span></div>
+              <div class="bar-row"><span>中航光电</span><div class="bar-track"><div class="bar-fill warn" style="width:7%"></div></div><span class="down">-11.1%</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel span-5">
+          <h2>Evidence Stack</h2>
+          <div class="panel-body">
+            <div class="matrix">
+              <div class="matrix-card">
+                <h3>S 级</h3>
+                <p>暂无。还没有长约、预付款、产能售罄、涨价或明确客户锁量的硬证据。</p>
+              </div>
+              <div class="matrix-card">
+                <h3>A 级</h3>
+                <p>NVIDIA 官方平台资料、公司年报产品披露、川环批量供货 / UL 线索、中航年报产品列示。</p>
+              </div>
+              <div class="matrix-card">
+                <h3>B/C 级</h3>
+                <p>OCP 设计贡献、冷板学术研究、行业报告与券商测算。可用于方向判断，不可直接推出利润兑现。</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel span-6">
+          <h2>Disconfirmation Triggers</h2>
+          <div class="panel-body">
+            <ol class="list">
+              <li>液冷收入占比低于 5%-10%。</li>
+              <li>没有批量订单更新。</li>
+              <li>毛利率不改善。</li>
+              <li>二供三供快速导入。</li>
+              <li>标准化后价格下降。</li>
+              <li>Blackwell / Rubin 部署节奏放缓。</li>
+              <li>公司原主业下滑抵消液冷增量。</li>
+              <li>高位利好不涨。</li>
+            </ol>
+          </div>
+        </article>
+
+        <article class="panel span-6">
+          <h2>Next Research Queue</h2>
+          <div class="panel-body">
+            <table>
+              <thead>
+                <tr><th>跟踪项目</th><th>频率</th><th>触发动作</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>客户认证：UL / OCP / 服务器客户验证</td><td>季度</td><td>调整证据等级</td></tr>
+                <tr><td>订单：批量供货、长约、预付款</td><td>月度 / 季度</td><td>调整优先级</td></tr>
+                <tr><td>收入占比：液冷收入 / 总收入</td><td>季度</td><td>判断报表弹性</td></tr>
+                <tr><td>毛利率：液冷业务或综合毛利率</td><td>季度</td><td>验证利润兑现</td></tr>
+                <tr><td>市场拥挤度：涨幅、估值、成交额</td><td>周度 / 月度</td><td>控制追高风险</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <footer>
+        <span>Research page generated from Markdown source. Static HTML, no external dependencies.</span>
+        <span>Not investment advice · Keep Markdown as source artifact · Coverage gap: overseas market data not yet structured in this first pass.</span>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
