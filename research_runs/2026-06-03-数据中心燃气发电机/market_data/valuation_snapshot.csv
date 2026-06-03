@@ -1,0 +1,17 @@
+symbol,market,name,as_of,market_cap,pe_ttm,pb,ps_ttm,ev_ebitda,pe_percentile_3y,pe_percentile_5y,peer_group,source
+GEV,US,GE Vernova,2026-06-02,260569710592,28.328075,18.716246,6.6176434,,,,data_center_gas_power,Yahoo Finance via yfinance
+CAT,US,Caterpillar,2026-06-02,419051175936,45.24167,22.458344,5.9225664,,,,data_center_gas_power,Yahoo Finance via yfinance
+CMI,US,Cummins,2026-06-02,92821110784,34.96206,7.515278,2.7385705,,,,data_center_gas_power,Yahoo Finance via yfinance
+GNRC,US,Generac,2026-06-02,16752847872,89.21002,6.251345,3.8722456,,,,data_center_gas_power,Yahoo Finance via yfinance
+ENR.DE,EU,Siemens Energy,2026-06-03,135421059072,62.66142,12.744015,3.3735504,,,,data_center_gas_power,Yahoo Finance via yfinance
+WRT1V.HE,EU,Wartsila,2026-06-03,20693071872,31.909088,8.664527,2.9942224,,,,data_center_gas_power,Yahoo Finance via yfinance
+7011.T,JP,Mitsubishi Heavy Industries,2026-06-03,12006028476416,34.10002,3.8872492,2.4136755,,,,data_center_gas_power,Yahoo Finance via yfinance
+7012.T,JP,Kawasaki Heavy Industries,2026-06-03,2370883026944,21.939053,2.6999502,1.0257937,,,,data_center_gas_power,Yahoo Finance via yfinance
+2727.HK,HK,Shanghai Electric H,2026-06-03,64180703232,41.3,1.0093815,0.49848387,,,,data_center_gas_power,Yahoo Finance via yfinance
+1072.HK,HK,Dongfang Electric H,2026-06-03,112673382400,22.625,2.0751898,1.4351784,,,,data_center_gas_power,Yahoo Finance via yfinance
+2338.HK,HK,Weichai Power H,2026-06-03,345446350848,26.236843,3.0938768,1.4581414,,,,data_center_gas_power,Yahoo Finance via yfinance
+601727.SH,CN_A,Shanghai Electric,20260603,12338856.579,95.3281,2.2478,0.9636,,,,data_center_gas_power,Tushare pro.daily_basic
+600875.SH,CN_A,Dongfang Electric,20260603,11554381.8492,27.1043,2.4645,1.4717,,,,data_center_gas_power,Tushare pro.daily_basic
+002353.SZ,CN_A,Jereh Group,20260603,14645233.8352,52.2475,6.2341,8.7034,,,,data_center_gas_power,Tushare pro.daily_basic
+000338.SZ,CN_A,Weichai Power,20260603,27952740.692,24.7251,2.9547,1.1799,,,,data_center_gas_power,Tushare pro.daily_basic
+300153.SZ,CN_A,Ketopower,20260603,837440.0,145.8301,9.1545,4.1528,,,,data_center_gas_power,Tushare pro.daily_basic

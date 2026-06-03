@@ -1,0 +1,153 @@
+research_object: "数据中心燃气发电机"
+run_date: "2026-06-03"
+current_step: 9
+trace_file: "state/run_trace.jsonl"
+
+agent_capabilities:
+  report_file: "state/capability_report.json"
+  agent_name: "Codex"
+  web_search: "yes"
+  browser: "yes"
+  python: "available"
+  tushare: "available"
+  yahoo_cli: "available"
+  git: "available"
+  limitations:
+    - "Search results and market data are point-in-time as of 2026-06-03."
+    - "Some overseas tickers may have incomplete Yahoo valuation fields."
+
+context_pack:
+  protocol_file: "CONTEXT_PACK_PROTOCOL.md"
+  current_step_context:
+    - "AGENTS.md"
+    - "AGENT_FRAMEWORK.md"
+    - "FRAMEWORK_ADDENDUM_CROSS_MARKET.md"
+    - "AGENT_CAPABILITY_MATRIX.md"
+    - "SEARCH_PROTOCOL.md"
+    - "CONTEXT_PACK_PROTOCOL.md"
+    - "RUN_TRACE_SCHEMA.md"
+    - "MEMORY_TAXONOMY.md"
+    - "templates/run_checklist.md"
+  excluded_context:
+    - "Full historical reports from unrelated runs unless used as framework comparison."
+  compression_notes: "Use just-in-time loading: previous report, state, ledger, source index, then specific market data or sources only when required."
+
+memory_updates:
+  project_rules: []
+  run_state:
+    - "Research object initialized as data-center onsite gas generation and related gas turbine/reciprocating engine/electrical integration supply chain."
+  entity_memory: []
+  evidence_memory: []
+  execution_memory:
+    - "Capability preflight succeeded before step 000."
+
+market_scope:
+  primary_focus: ["US", "CN_A"]
+  required_comparison_markets: ["US", "CN_A", "HK", "EU", "JP"]
+  optional_markets: ["KR", "TW"]
+  excluded_markets: []
+  exclusion_reasons: {}
+
+competitive_universe:
+  global_leaders: ["GE Vernova", "Caterpillar", "Cummins", "Siemens Energy", "Mitsubishi Heavy Industries", "Kawasaki Heavy Industries", "Wartsila"]
+  regional_leaders: ["Rolls-Royce Power Systems", "Kohler Energy/Rehlko", "Generac", "Aggreko"]
+  upstream_suppliers: ["gas turbine components", "generator sets", "switchgear", "transformers", "fuel gas compression", "emissions control", "EPC/grid interconnection"]
+  downstream_customers: ["hyperscalers", "colocation data centers", "AI cloud operators", "utilities", "independent power producers"]
+  listed_comparables: ["GEV", "CAT", "CMI", "ENR.DE", "7011.T", "7012.T", "WRT1V.HE", "600875.SH", "601727.SH", "002202.SZ", "301558.SZ", "3898.HK"]
+
+market_data_coverage:
+  required_markets: ["US", "CN_A", "HK", "EU", "JP"]
+  covered_markets: []
+  covered_markets: ["US", "CN_A", "HK", "EU", "JP"]
+  missing_markets: []
+  missing_reason: {}
+
+object_definition:
+  type: "产业链环节"
+  ai_chain_category: "AI data center power infrastructure"
+  upstream: ["natural gas supply", "gas turbines", "reciprocating gas engines", "generator alternators", "power electronics", "switchgear", "transformers", "EPC"]
+  downstream: ["data center developers", "hyperscalers", "colocation operators", "utilities and IPPs"]
+  final_demand_source: ["AI training and inference compute demand", "data center power capacity shortage", "grid interconnection delays"]
+
+core_hypotheses:
+  - "AI data center power demand is pushing some operators toward onsite or behind-the-meter gas generation because grid interconnection and utility capacity can lag data center build schedules."
+  - "The strongest beneficiaries may be global gas turbine and engine OEMs plus electrical balance-of-plant suppliers, not only China-listed generator concept names."
+  - "Gas generation is likely a bridge or hybrid solution constrained by permitting, gas supply, emissions, water, and public-policy risk."
+
+claims:
+  confirmed_facts:
+    - "Wartsila disclosed a 412MW U.S. hyperscale data-center gas-engine order."
+    - "Mitsubishi Power disclosed gas turbine allocation for 1,150MW onsite data-center power at Cheyenne Power Hub."
+    - "GE Vernova and Chevron have a data-center-focused natural-gas power collaboration target."
+  reasonable_inferences: []
+  market_narratives:
+    - "AI data-center electricity pressure has increased investor attention on gas power and generator companies."
+  unverified_assumptions:
+    - "China-listed candidates will obtain material AI data-center gas-generation revenue."
+  weak_or_rumor_evidence: []
+
+open_questions:
+  - "Which data center operators have announced onsite gas generation, gas turbine procurement, or gas-fired power projects?"
+  - "Is the bottleneck gas turbine capacity, engine capacity, interconnection, permitting, gas supply, or emissions compliance?"
+  - "Which listed companies have material revenue exposure rather than thematic adjacency?"
+  - "How much of the theme has already been priced into GEV, CAT, CMI, Siemens Energy, MHI, and China/HK candidates?"
+  - "What evidence would disconfirm onsite gas generation as an AI data center bottleneck opportunity?"
+
+chain_position:
+  transmission_stage: ""
+  transmission_strength: ""
+  bottleneck_type: ""
+  pricing_power_initial_view: ""
+
+demand:
+  status: "real but conditional"
+  strongest_evidence: ["Wartsila 412MW order", "Mitsubishi Power Cheyenne Power Hub", "GE Vernova/Chevron 4GW target"]
+  biggest_doubt: "Gas generation may be replaced by utility PPA, grid expansion, nuclear, renewables plus storage, or other power solutions."
+  expected_duration: "2-5 years as bridge/stage demand, subject to project permitting and grid conditions."
+
+supply:
+  elasticity_score: 3.5
+  bottleneck_nature: "stage bottleneck across gas turbines/engines, gas connection, emissions permitting, electrical integration and service."
+  bottleneck_duration: "2-4 years if data-center power queues persist."
+  profit_conversion_view: "Best for OEMs and long-term service; weaker for generic integrators."
+
+targets:
+  high_priority: ["GEV", "WRT1V.HE", "7011.T", "CMI"]
+  watchlist: ["ENR.DE", "CAT", "002353.SZ", "601727.SH", "600875.SH", "000338.SZ"]
+  theme_only: ["GNRC", "300153.SZ", "2688.HK"]
+  overseas_comparables: ["GEV", "CAT", "CMI", "GNRC", "ENR.DE", "WRT1V.HE", "7011.T", "7012.T"]
+  missing_market_candidates: []
+
+evidence_summary:
+  s_level: ["Wartsila 412MW data-center gas-engine order", "Mitsubishi Power 1,150MW onsite data-center power project"]
+  a_level: ["GE Vernova/Chevron data-center gas power target", "Cummins data-center power demand", "Siemens Energy/Eaton modular power plant concept"]
+  b_level: []
+  c_or_d_level: []
+  biggest_gap: "China-listed direct data-center gas-generation orders and revenue share are not yet verified."
+
+pricing:
+  crowdedness: "high"
+  valuation_risk: "high for many names, especially Jereh, CAT, CMI, GNRC, GEV and Siemens Energy"
+  priced_in_view: "theme is substantially priced in across several global and China/HK candidates."
+
+disconfirmation:
+  top_signals:
+    - "Onsite gas projects are delayed or canceled."
+    - "Utility/PPA/nuclear/storage solutions replace gas power."
+    - "OEM financials do not show data-center order or margin conversion."
+    - "China-listed companies do not disclose direct orders."
+    - "High-valuation names fail to react to good news."
+  review_windows:
+    one_quarter: ""
+    two_quarters: ""
+    four_quarters: ""
+
+final_action:
+  research_priority: "medium-high"
+  valuation_gate: "required"
+  exposure_proof: "orders, backlog, revenue share and margin conversion"
+  action: "build tracking list and deepen overseas leaders; keep China names behind evidence gate"
+  reason: "demand evidence is real, but market pricing is crowded and China-listed direct proof is weak."
+  missing_evidence: ["named customer orders", "data-center backlog share", "China-listed direct revenue exposure", "project permitting progress"]
+  next_review_condition: "new S/A-level order evidence, data-center backlog disclosure, meaningful valuation reset, or direct China-listed project announcement."
+  not_investment_advice: true

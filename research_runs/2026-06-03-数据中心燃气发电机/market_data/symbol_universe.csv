@@ -1,0 +1,18 @@
+symbol,market,name,currency,source_step,priority,market_role,coverage_required,data_provider,coverage_status,gap_reason,notes
+GEV,US,GE Vernova,USD,004,A,global_gas_turbine_oem,yes,Yahoo,covered,,GE/Chevron data-center gas power evidence
+CAT,US,Caterpillar,USD,004,B,power_generation_oem,yes,Yahoo,covered,,Generator sets and power systems comparable
+CMI,US,Cummins,USD,004,A,generator_power_systems,yes,Yahoo,covered,,Company evidence for data-center backup power demand
+GNRC,US,Generac,USD,004,C,distributed_backup_power,yes,Yahoo,covered,,Theme comparable; lower direct hyperscale evidence
+ENR.DE,EU,Siemens Energy,EUR,004,A,gas_turbine_power_systems,yes,Yahoo,covered,,SGT-800 modular data-center power concept
+WRT1V.HE,EU,Wartsila,EUR,004,A,gas_engine_power_systems,yes,Yahoo,covered,,Direct 412MW hyperscale data-center order
+7011.T,JP,Mitsubishi Heavy Industries,JPY,004,A,gas_turbine_oem,yes,Yahoo,covered,,Mitsubishi Power Cheyenne Power Hub project
+7012.T,JP,Kawasaki Heavy Industries,JPY,004,B,energy_systems,yes,Yahoo,covered,,Gas turbine/energy system comparable
+2727.HK,HK,Shanghai Electric H,HKD,004,B,gas_turbine_power_equipment,yes,Yahoo,covered,,H-share mapping for Shanghai Electric
+1072.HK,HK,Dongfang Electric H,HKD,004,B,power_equipment,yes,Yahoo,covered,,H-share mapping for Dongfang Electric
+2338.HK,HK,Weichai Power H,HKD,004,B,gas_engines,yes,Yahoo,covered,,H-share mapping for Weichai Power
+2688.HK,HK,ENN Energy,HKD,004,C,gas_supply_integrated_energy,no,Yahoo,not_required,indirect exposure,Gas supply context rather than generator OEM
+601727.SH,CN_A,Shanghai Electric,CNY,004,B,gas_turbine_power_equipment,yes,Tushare,covered,,Gas turbine JV and power equipment capability
+600875.SH,CN_A,Dongfang Electric,CNY,004,B,power_equipment,yes,Tushare,covered,,Power equipment/gas turbine capability; direct data-center evidence weak
+002353.SZ,CN_A,Jereh Group,CNY,004,A,gas_generator_sets,yes,Tushare,covered,,Jereh Gas product page includes data-center application
+000338.SZ,CN_A,Weichai Power,CNY,004,B,gas_engines,yes,Tushare,covered,,Gas engine/powertrain exposure; direct data-center evidence weak
+300153.SZ,CN_A,Ketopower,CNY,004,B,generator_sets_backup_power,yes,Tushare,covered,,Data-center backup power concept; direct gas evidence needs validation

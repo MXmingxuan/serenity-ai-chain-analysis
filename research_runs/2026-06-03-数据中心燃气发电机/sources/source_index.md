@@ -1,0 +1,29 @@
+# Source Index - 数据中心燃气发电机
+
+Run date: 2026-06-03
+
+This source index records sources used across the prompt-chain run. Search-heavy steps are also summarized in `sources/search_packet.md`.
+
+## Sources
+
+| id | source | type | date | used for | url |
+|---|---|---|---|---|---|
+| S001 | IEA, Energy and AI - Energy demand from AI | authoritative agency | 2025/2026 page accessed 2026-06-03 | data center electricity demand expected to roughly double by 2030 and creates local grid challenges | https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai |
+| S002 | IEA, Energy and AI - Energy supply for AI | authoritative agency | 2025/2026 page accessed 2026-06-03 | renewables meet about half of growth in base case; faster growth and grid queues increase fossil-fuel reliance | https://www.iea.org/reports/energy-and-ai/energy-supply-for-ai |
+| S003 | EIA press release, strongest four-year U.S. electricity demand growth since 2000 | government agency | 2026-01-13 | U.S. electricity demand growth fueled by data centers; natural gas generation remains central | https://www.eia.gov/pressroom/releases/press582.php |
+| S004 | EIA Today in Energy, fossil generation could rise with faster-than-expected data center demand | government agency | 2026-04 | high demand scenario would primarily increase natural gas-fired generation utilization | https://www.eia.gov/todayinenergy/detail.php?id=67344 |
+| S005 | Uptime Institute, Giant data center power plans reach extreme levels | industry authority | 2026-01 | giant AI campuses increasingly plan onsite/off-grid power; natural gas and solar preferred choices for off-grid power | https://intelligence.uptimeinstitute.com/resource/giant-data-center-power-plans-reach-extreme-levels |
+| S006 | GE Vernova, Gas Power Technology for Data Centers | company official | accessed 2026-06-03 | GE Vernova positions gas turbines for data center power; references Chevron partnership and Crusoe project | https://www.gevernova.com/gas-power/industries/data-centers |
+| S007 | GE Vernova, Meeting Data Center Demand with Chevron | company official | 2025 | Chevron and GE Vernova partnership targeting scalable natural-gas power for data centers, with first deliveries scheduled for 2026 | https://www.gevernova.com/gas-power/resources/articles/2025/meeting-data-center-demand-with-chevron |
+| S008 | Cummins, Market trends shaping data center strategy in the age of AI | company official | 2026-05-06 | power availability, onsite generation, supply chain lead times, and generator/electrical bottlenecks | https://www.cummins.com/en-na/news/2026/05/06/market-trends-shaping-data-center-strategy-age-ai |
+| S009 | Cummins, FY 2025 results press release | company official | 2026-02-05 | robust demand for data center backup power supported record Distribution and Power Systems performance | https://www.cummins.com/news/releases/2026/02/05/cummins-reports-strong-fourth-quarter-and-full-year-2025-results-records |
+| S010 | Wärtsilä, 34SG engine data center debut with 412 MW U.S. project | company official | 2026-04-16 | 412 MW engine power order for hyperscale data center; total U.S. data center engine capacity sold over 1.6 GW | https://www.wartsila.com/dnk/media/news/16-04-2026-wartsila-s-34sg-engine-makes-its-data-center-debut-with-new-412-mw-u-s-project-3740972 |
+| S011 | Mitsubishi Power, Tallgrass and Mitsubishi Power turbine allocation for Cheyenne Power Hub | company official | 2026-05-15 | first two M501JAC gas turbines support 1,150 MW dedicated onsite power for large-scale data center | https://power.mhi.com/regions/amer/news/260515 |
+| S012 | Siemens Energy and Eaton joint press release | company official | 2026 | modular power plant concept for data centers featuring SGT-800 gas turbines, redundancy and battery storage | https://assets.siemens-energy.com/dam/818d34fa-7279-4652-a213-b2f10078fa26/Siemens_Energy_Eaton_Data_Center_25-06-03-pdf_Original%20file.pdf |
+| S013 | Rehlko, Hyperscale power solutions | company official | accessed 2026-06-03 | gas gensets, hybrid energy and lifecycle service for AI-scale hyperscale data centers | https://www.rehlko.com/hyperscale |
+| S014 | Rehlko, Speed to Power | company official/media | 2026-03 | modular gas engines and hybrid systems as bridge for slow grid connections | https://www.rehlko.com/speed-to-power-technology-keeping-ai-data-centers-online |
+| S015 | Mitsubishi Heavy Industries, Data Center Solutions | company official | accessed 2026-06-03 | MHI offers one-stop data center power/cooling/digital solutions including gas turbines and emergency generation | https://www.mhi.com/products/infrastructure/data_center |
+| S016 | Shanghai Electric Gas Turbine company introduction | company official | accessed 2026-06-03 | Shanghai Electric joint venture with Ansaldo in gas turbines, distributed-energy gas turbine technology | https://www.shanghai-electric.com/group/dqrqljgsjs/ |
+| S017 | Jereh Gas, gas generator set product page | company official | accessed 2026-06-03 | Jereh provides gas internal combustion generator sets, aero-derivative gas turbines and power services for data centers and other sectors | https://www.jereh-gas.com/product/gas-generator-set.jsp |
+| S018 | ENN clean energy business | company official | accessed 2026-06-03 | ENN as gas supply/distribution and integrated-energy context, indirect exposure | https://www.enn.cn/en_energy.html |
+| S019 | Associated Press, DOE announces 10-GW data center/gas plants for Ohio uranium site | reputable media citing government announcement | 2026-03-20 | example of very large data center paired with natural-gas generation | https://apnews.com/article/4667fa1442ec1c652228337ab4eb68ee |
