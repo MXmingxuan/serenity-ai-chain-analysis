@@ -109,6 +109,30 @@ flowchart TD
 - 默认从环境变量 `TUSHARE_TOKEN` 读取。
 - 提交前运行校验脚本和敏感信息扫描。
 
+## 跨 Agent 运行
+
+本项目可以由 Codex、Claude Code、OpenClaw 或其他具备文件读写和搜索能力的 agent 执行，但效果是否接近，取决于启动前是否把能力边界说清楚。
+
+推荐启动顺序：
+
+1. 先读 `AGENTS.md`。Claude Code 还会自动读取 `CLAUDE.md`，该文件只是把 Claude 的入口转回同一套项目协议。
+2. 跑 capability preflight，按实际工具填写 `--agent-name`、`--web-search` 和 `--browser`。
+3. 如果当前 agent 没有 web search，不独立执行 `002` 到 `005`，只整理已有材料、读取用户提供的 source pack，或准备 search packet。
+4. 搜索密集步骤必须更新 `sources/search_packet.md`，并把重要来源落到 `sources/source_index.md` 或 `state/evidence_ledger.csv`。
+5. 完成后跑 `scripts/validate_run.py`，再决定是否提交。
+
+示例：
+
+```powershell
+python scripts\capability_preflight.py --run-dir "research_runs\YYYY-MM-DD-研究对象" --agent-name "Claude Code" --web-search yes --browser yes
+```
+
+Windows 终端如果显示中文乱码，优先使用 UTF-8 读取文件，例如：
+
+```powershell
+Get-Content README.md -Encoding UTF8
+```
+
 ## 目录结构
 
 ```text
@@ -117,6 +141,7 @@ flowchart TD
 ├── AGENT_FRAMEWORK.md
 ├── FRAMEWORK_ADDENDUM_CROSS_MARKET.md
 ├── AGENTS.md
+├── CLAUDE.md
 ├── PROJECT_RETRO_AND_OPTIMIZATION.md
 ├── scripts/
 │   └── validate_run.py
@@ -141,6 +166,18 @@ flowchart TD
 目录：`research_runs/2026-06-03-液冷二级零部件`
 
 结论摘要：液冷需求真实，但“液冷龙头”已被市场充分关注；更值得拆的是管路、流体连接器、冷板、manifold、泵阀、密封/材料等二级或三级零部件。
+
+### 数据中心燃气发电机
+
+目录：`research_runs/2026-06-03-数据中心燃气发电机`
+
+结论摘要：数据中心自备/近场燃气发电是电网接入瓶颈下的替代供电子题，但必须同时跟踪海外 OEM、数据中心客户、燃机整机、发电机组和区域工程交付能力。
+
+### 数据中心燃气发电机上游拆解版
+
+目录：`research_runs/2026-06-03-数据中心燃气发电机上游拆解版`
+
+结论摘要：新增 component decomposition 后，研究重心从“燃气发电机整机/OEM”进一步拆到热端部件、叶片/导向叶片、燃烧室、镍基高温合金、热障涂层、精密铸造、检测和后市场服务等二级/三级瓶颈。
 
 ## 运行校验
 

@@ -12,6 +12,13 @@
 8. `COMPONENT_DECOMPOSITION_PROTOCOL.md`
 9. `templates/run_checklist.md`
 
+## 跨 Agent 入口
+
+- Codex、Claude Code、OpenClaw 或其他 agent 都应以本文件作为项目入口。
+- Claude Code 会优先读取项目根目录的 `CLAUDE.md`；该文件只做轻量入口适配，真实规则仍以本文件和协议文档为准。
+- 如果某个 agent 有自己的记忆文件、skill、MCP 或浏览器工具，不得覆盖本项目协议；只能作为能力实现方式写入 `state/capability_report.json` 和 `state/run_trace.jsonl`。
+- 搜索工具、浏览器工具和行情数据源在不同 agent 中会有差异，因此最终报告必须以 source index、evidence ledger、market data notes 和 run trace 为可复盘依据，而不是以“模型记得/模型判断”为依据。
+
 ## 强制规则
 
 - “以中国上市公司为重点”不等于“只研究中国上市公司”。
