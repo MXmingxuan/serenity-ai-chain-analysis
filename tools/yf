@@ -1,0 +1,391 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#   "yfinance>=0.2.65",
+#   "rich>=13.7.0",
+#   "pandas>=2.2.0",
+# ]
+# ///
+from __future__ import annotations
+
+import argparse
+import math
+import sys
+from datetime import datetime, timezone
+from typing import Any
+
+import pandas as pd
+import yfinance as yf
+from rich.console import Console
+from rich.table import Table
+
+
+console = Console()
+
+
+def clean(value: Any) -> str:
+    if value is None:
+        return "-"
+    try:
+        if isinstance(value, float) and math.isnan(value):
+            return "-"
+    except TypeError:
+        pass
+    if isinstance(value, (int, float)):
+        if abs(value) >= 1_000_000_000_000:
+            return f"{value / 1_000_000_000_000:.2f}T"
+        if abs(value) >= 1_000_000_000:
+            return f"{value / 1_000_000_000:.2f}B"
+        if abs(value) >= 1_000_000:
+            return f"{value / 1_000_000:.2f}M"
+        if abs(value) >= 1_000:
+            return f"{value:,.2f}"
+        return f"{value:.4g}"
+    return str(value)
+
+
+def ticker(symbol: str) -> yf.Ticker:
+    return yf.Ticker(symbol)
+
+
+def info(symbol: str) -> dict[str, Any]:
+    try:
+        data = ticker(symbol).get_info()
+    except Exception as exc:
+        raise RuntimeError(f"failed to fetch Yahoo Finance info for {symbol}: {exc}") from exc
+    if not data:
+        raise RuntimeError(f"no Yahoo Finance info returned for {symbol}")
+    return data
+
+
+def print_kv(title: str, rows: list[tuple[str, Any]]) -> None:
+    table = Table(title=title)
+    table.add_column("Field")
+    table.add_column("Value")
+    for key, value in rows:
+        table.add_row(key, clean(value))
+    console.print(table)
+
+
+def cmd_price(symbol: str) -> None:
+    data = info(symbol)
+    print_kv(
+        f"{symbol} Price",
+        [
+            ("symbol", data.get("symbol", symbol)),
+            ("name", data.get("shortName") or data.get("longName")),
+            ("price", data.get("regularMarketPrice") or data.get("currentPrice")),
+            ("change", data.get("regularMarketChange")),
+            ("change_pct", data.get("regularMarketChangePercent")),
+            ("currency", data.get("currency")),
+            ("market_time", data.get("regularMarketTime")),
+        ],
+    )
+
+
+def cmd_quote(symbol: str) -> None:
+    data = info(symbol)
+    print_kv(
+        f"{symbol} Quote",
+        [
+            ("name", data.get("shortName") or data.get("longName")),
+            ("exchange", data.get("exchange")),
+            ("currency", data.get("currency")),
+            ("price", data.get("regularMarketPrice") or data.get("currentPrice")),
+            ("previous_close", data.get("regularMarketPreviousClose")),
+            ("open", data.get("regularMarketOpen")),
+            ("day_low", data.get("regularMarketDayLow")),
+            ("day_high", data.get("regularMarketDayHigh")),
+            ("52w_low", data.get("fiftyTwoWeekLow")),
+            ("52w_high", data.get("fiftyTwoWeekHigh")),
+            ("volume", data.get("regularMarketVolume") or data.get("volume")),
+            ("avg_volume_10d", data.get("averageDailyVolume10Day")),
+            ("market_cap", data.get("marketCap")),
+        ],
+    )
+
+
+def cmd_fundamentals(symbol: str) -> None:
+    data = info(symbol)
+    print_kv(
+        f"{symbol} Fundamentals",
+        [
+            ("market_cap", data.get("marketCap")),
+            ("enterprise_value", data.get("enterpriseValue")),
+            ("trailing_pe", data.get("trailingPE")),
+            ("forward_pe", data.get("forwardPE")),
+            ("price_to_sales_ttm", data.get("priceToSalesTrailing12Months")),
+            ("price_to_book", data.get("priceToBook")),
+            ("enterprise_to_ebitda", data.get("enterpriseToEbitda")),
+            ("eps_ttm", data.get("trailingEps")),
+            ("eps_forward", data.get("forwardEps")),
+            ("gross_margins", data.get("grossMargins")),
+            ("operating_margins", data.get("operatingMargins")),
+            ("profit_margins", data.get("profitMargins")),
+            ("roe", data.get("returnOnEquity")),
+            ("roa", data.get("returnOnAssets")),
+            ("target_mean_price", data.get("targetMeanPrice")),
+            ("recommendation_mean", data.get("recommendationMean")),
+        ],
+    )
+
+
+def cmd_profile(symbol: str) -> None:
+    data = info(symbol)
+    print_kv(
+        f"{symbol} Profile",
+        [
+            ("name", data.get("longName") or data.get("shortName")),
+            ("sector", data.get("sector")),
+            ("industry", data.get("industry")),
+            ("employees", data.get("fullTimeEmployees")),
+            ("website", data.get("website")),
+            ("city", data.get("city")),
+            ("country", data.get("country")),
+            ("business_summary", data.get("longBusinessSummary")),
+        ],
+    )
+
+
+def cmd_earnings(symbol: str) -> None:
+    tk = ticker(symbol)
+    data = info(symbol)
+    print_kv(
+        f"{symbol} Earnings",
+        [
+            ("next_earnings_date", data.get("earningsTimestamp")),
+            ("eps_ttm", data.get("trailingEps")),
+            ("eps_forward", data.get("forwardEps")),
+            ("earnings_quarterly_growth", data.get("earningsQuarterlyGrowth")),
+        ],
+    )
+    try:
+        dates = tk.get_earnings_dates(limit=8)
+    except Exception:
+        dates = pd.DataFrame()
+    if not dates.empty:
+        table = Table(title=f"{symbol} Recent Earnings")
+        table.add_column("Date")
+        for col in dates.columns:
+            table.add_column(str(col))
+        for idx, row in dates.head(8).iterrows():
+            table.add_row(str(idx), *[clean(row[col]) for col in dates.columns])
+        console.print(table)
+
+
+def cmd_dividends(symbol: str) -> None:
+    tk = ticker(symbol)
+    data = info(symbol)
+    print_kv(
+        f"{symbol} Dividends",
+        [
+            ("dividend_rate", data.get("dividendRate")),
+            ("dividend_yield", data.get("dividendYield")),
+            ("ex_dividend_date", data.get("exDividendDate")),
+            ("payout_ratio", data.get("payoutRatio")),
+        ],
+    )
+    divs = tk.dividends.tail(10)
+    if not divs.empty:
+        table = Table(title=f"{symbol} Recent Dividends")
+        table.add_column("Date")
+        table.add_column("Dividend")
+        for idx, value in divs.items():
+            table.add_row(str(idx.date()), clean(value))
+        console.print(table)
+
+
+def cmd_ratings(symbol: str) -> None:
+    tk = ticker(symbol)
+    data = info(symbol)
+    print_kv(
+        f"{symbol} Analyst Ratings",
+        [
+            ("recommendation_key", data.get("recommendationKey")),
+            ("recommendation_mean", data.get("recommendationMean")),
+            ("number_of_analyst_opinions", data.get("numberOfAnalystOpinions")),
+            ("target_low_price", data.get("targetLowPrice")),
+            ("target_mean_price", data.get("targetMeanPrice")),
+            ("target_high_price", data.get("targetHighPrice")),
+        ],
+    )
+    try:
+        recs = tk.get_recommendations().tail(10)
+    except Exception:
+        recs = pd.DataFrame()
+    if not recs.empty:
+        table = Table(title=f"{symbol} Recent Recommendation Changes")
+        table.add_column("Date")
+        for col in recs.columns:
+            table.add_column(str(col))
+        for idx, row in recs.iterrows():
+            table.add_row(str(idx), *[clean(row[col]) for col in recs.columns])
+        console.print(table)
+
+
+def cmd_options(symbol: str) -> None:
+    tk = ticker(symbol)
+    expirations = tk.options
+    if not expirations:
+        console.print(f"No options data for {symbol}")
+        return
+    expiry = expirations[0]
+    chain = tk.option_chain(expiry)
+    price = info(symbol).get("regularMarketPrice") or info(symbol).get("currentPrice")
+    console.print(f"{symbol} options expiry: {expiry}")
+    for name, frame in [("Calls", chain.calls), ("Puts", chain.puts)]:
+        table = Table(title=f"{symbol} {name} near the money")
+        for col in ["contractSymbol", "strike", "bid", "ask", "volume", "openInterest", "impliedVolatility"]:
+            table.add_column(col)
+        sample = frame.copy()
+        if price:
+            sample["distance"] = (sample["strike"] - price).abs()
+            sample = sample.sort_values("distance").head(10)
+        else:
+            sample = sample.head(10)
+        for _, row in sample.iterrows():
+            table.add_row(*[clean(row.get(col)) for col in table.columns._all_columns])
+        console.print(table)
+
+
+def cmd_history(symbol: str, period: str) -> None:
+    hist = ticker(symbol).history(period=period, interval="1d", auto_adjust=False)
+    if hist.empty:
+        raise RuntimeError(f"no history returned for {symbol} period={period}")
+    table = Table(title=f"{symbol} History {period}")
+    for col in ["Date", "Open", "High", "Low", "Close", "Volume"]:
+        table.add_column(col)
+    for idx, row in hist.tail(20).iterrows():
+        table.add_row(
+            str(idx.date()),
+            clean(row.get("Open")),
+            clean(row.get("High")),
+            clean(row.get("Low")),
+            clean(row.get("Close")),
+            clean(row.get("Volume")),
+        )
+    console.print(table)
+
+
+def cmd_compare(symbols: str) -> None:
+    names = [item.strip() for item in symbols.split(",") if item.strip()]
+    table = Table(title=f"Compare {', '.join(names)}")
+    for col in ["symbol", "name", "price", "change_pct", "52w_low", "52w_high", "market_cap", "currency"]:
+        table.add_column(col)
+    for symbol in names:
+        try:
+            data = info(symbol)
+            table.add_row(
+                symbol,
+                clean(data.get("shortName") or data.get("longName")),
+                clean(data.get("regularMarketPrice") or data.get("currentPrice")),
+                clean(data.get("regularMarketChangePercent")),
+                clean(data.get("fiftyTwoWeekLow")),
+                clean(data.get("fiftyTwoWeekHigh")),
+                clean(data.get("marketCap")),
+                clean(data.get("currency")),
+            )
+        except Exception as exc:
+            table.add_row(symbol, f"ERROR: {exc}", "-", "-", "-", "-", "-", "-")
+    console.print(table)
+
+
+def cmd_search(query: str) -> None:
+    try:
+        result = yf.Search(query, max_results=10)
+        quotes = result.quotes
+    except Exception as exc:
+        raise RuntimeError(f"search failed for {query}: {exc}") from exc
+    table = Table(title=f"Search: {query}")
+    for col in ["symbol", "shortname", "quoteType", "exchange", "score"]:
+        table.add_column(col)
+    for row in quotes:
+        table.add_row(
+            clean(row.get("symbol")),
+            clean(row.get("shortname") or row.get("longname")),
+            clean(row.get("quoteType")),
+            clean(row.get("exchange")),
+            clean(row.get("score")),
+        )
+    console.print(table)
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description="Yahoo Finance CLI using yfinance")
+    sub = parser.add_subparsers(dest="command")
+    for command in ["price", "quote", "fundamentals", "earnings", "profile", "dividends", "ratings", "options"]:
+        p = sub.add_parser(command)
+        p.add_argument("symbol")
+    p = sub.add_parser("history")
+    p.add_argument("symbol")
+    p.add_argument("period", choices=["1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", "max"])
+    p = sub.add_parser("compare")
+    p.add_argument("symbols")
+    p = sub.add_parser("search")
+    p.add_argument("query")
+    return parser
+
+
+def main(argv: list[str]) -> int:
+    commands = {
+        "price",
+        "quote",
+        "fundamentals",
+        "earnings",
+        "profile",
+        "dividends",
+        "ratings",
+        "options",
+        "history",
+        "compare",
+        "search",
+    }
+    if argv and argv[0] not in commands and not argv[0].startswith("-"):
+        try:
+            cmd_price(argv[0])
+            console.print(f"[dim]source=Yahoo Finance via yfinance as_of={datetime.now(timezone.utc).isoformat()}[/dim]")
+            return 0
+        except Exception as exc:
+            console.print(f"[red]ERROR[/red] {exc}")
+            return 1
+    parser = build_parser()
+    args = parser.parse_args(argv)
+    command = args.command
+    try:
+        if command is None:
+            parser.print_help()
+            return 2
+        elif command == "price":
+            cmd_price(args.symbol)
+        elif command == "quote":
+            cmd_quote(args.symbol)
+        elif command == "fundamentals":
+            cmd_fundamentals(args.symbol)
+        elif command == "earnings":
+            cmd_earnings(args.symbol)
+        elif command == "profile":
+            cmd_profile(args.symbol)
+        elif command == "dividends":
+            cmd_dividends(args.symbol)
+        elif command == "ratings":
+            cmd_ratings(args.symbol)
+        elif command == "options":
+            cmd_options(args.symbol)
+        elif command == "history":
+            cmd_history(args.symbol, args.period)
+        elif command == "compare":
+            cmd_compare(args.symbols)
+        elif command == "search":
+            cmd_search(args.query)
+        else:
+            parser.error(f"unknown command: {command}")
+    except Exception as exc:
+        console.print(f"[red]ERROR[/red] {exc}")
+        return 1
+    console.print(f"[dim]source=Yahoo Finance via yfinance as_of={datetime.now(timezone.utc).isoformat()}[/dim]")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main(sys.argv[1:]))

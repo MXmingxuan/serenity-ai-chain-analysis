@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local environments
+.venv/
+venv/
+env/
+.env
+.env.*
+
+# Local OS/editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+
+# Logs and local caches
+*.log
+.cache/
+
+# Secrets
+*.pem
+*.key
+*.secret
+secrets.*

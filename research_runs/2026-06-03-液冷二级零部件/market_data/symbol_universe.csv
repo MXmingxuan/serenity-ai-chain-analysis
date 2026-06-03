@@ -1,0 +1,15 @@
+﻿symbol,market,name,currency,source_step,priority,notes
+300547.SZ,CN_A,川环科技,CNY,004,A,liquid_cooling_tubes
+002179.SZ,CN_A,中航光电,CNY,004,A,fluid_connectors_tubes_coldplates
+688629.SH,CN_A,华丰科技,CNY,004,A,high_speed_connector_micro_liquid_interface
+603757.SH,CN_A,大元泵业,CNY,004,A/B,liquid_cooling_pump
+688800.SH,CN_A,瑞可达,CNY,004,B,connectors_liquid_connectors
+300351.SZ,CN_A,永贵电器,CNY,004,B,fluid_connectors
+300731.SZ,CN_A,科创新源,CNY,004,B,polymer_material_coldplate_tubes
+002837.SZ,CN_A,英维克,CNY,004,reference,cdu_coldplate_full_chain_leader
+300499.SZ,CN_A,高澜股份,CNY,004,reference,cdu_coldplate_manifold
+301018.SZ,CN_A,申菱环境,CNY,004,reference,thermal_system_cdu
+300990.SZ,CN_A,同飞股份,CNY,004,B,industrial_thermal_cdu
+002050.SZ,CN_A,三花智控,CNY,004,B,pump_valve_thermal_management
+002126.SZ,CN_A,银轮股份,CNY,004,B,heat_exchanger_thermal_management
+300602.SZ,CN_A,飞荣达,CNY,004,B,thermal_structural_parts_customer_chain

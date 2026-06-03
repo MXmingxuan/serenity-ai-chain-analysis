@@ -1,0 +1,95 @@
+research_object: ""
+run_date: ""
+current_step: 0
+
+market_scope:
+  primary_focus: []
+  required_comparison_markets: []
+  optional_markets: []
+  excluded_markets: []
+  exclusion_reasons: {}
+
+competitive_universe:
+  global_leaders: []
+  regional_leaders: []
+  upstream_suppliers: []
+  downstream_customers: []
+  listed_comparables: []
+
+market_data_coverage:
+  required_markets: []
+  covered_markets: []
+  missing_markets: []
+  missing_reason: {}
+
+object_definition:
+  type: ""
+  ai_chain_category: ""
+  upstream: []
+  downstream: []
+  final_demand_source: []
+
+core_hypotheses: []
+
+claims:
+  confirmed_facts: []
+  reasonable_inferences: []
+  market_narratives: []
+  unverified_assumptions: []
+  weak_or_rumor_evidence: []
+
+open_questions: []
+
+chain_position:
+  transmission_stage: ""
+  transmission_strength: ""
+  bottleneck_type: ""
+  pricing_power_initial_view: ""
+
+demand:
+  status: ""
+  strongest_evidence: []
+  biggest_doubt: ""
+  expected_duration: ""
+
+supply:
+  elasticity_score: null
+  bottleneck_nature: ""
+  bottleneck_duration: ""
+  profit_conversion_view: ""
+
+targets:
+  high_priority: []
+  watchlist: []
+  theme_only: []
+  overseas_comparables: []
+  missing_market_candidates: []
+
+evidence_summary:
+  s_level: []
+  a_level: []
+  b_level: []
+  c_or_d_level: []
+  biggest_gap: ""
+
+pricing:
+  crowdedness: ""
+  valuation_risk: ""
+  priced_in_view: ""
+
+disconfirmation:
+  top_signals: []
+  review_windows:
+    one_quarter: ""
+    two_quarters: ""
+    four_quarters: ""
+
+final_action:
+  research_priority: ""
+  valuation_gate: ""
+  exposure_proof: ""
+  action: ""
+  reason: ""
+  missing_evidence: []
+  next_review_condition: ""
+  not_investment_advice: true

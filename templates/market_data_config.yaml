@@ -1,0 +1,67 @@
+providers:
+  cn_a:
+    primary: tushare
+    token_env: TUSHARE_TOKEN
+    price_interfaces:
+      - daily
+      - pro_bar
+    valuation_interfaces:
+      - daily_basic
+    liquidity_interfaces:
+      - daily
+      - daily_basic
+  hk:
+    primary: yahoo
+    fallback: tushare
+    token_env: TUSHARE_TOKEN
+    yahoo_cli: tools/yf
+    price_interfaces:
+      - hk_daily
+      - hk_daily_adj
+  us:
+    primary: yahoo
+    fallback: tushare
+    token_env: TUSHARE_TOKEN
+    yahoo_cli: tools/yf
+    price_interfaces:
+      - us_daily
+      - us_daily_adj
+    financial_interfaces:
+      - us_fina_indicator
+
+return_windows:
+  - 1m
+  - 3m
+  - 6m
+  - 12m
+
+liquidity_windows:
+  - 20d
+  - 60d
+  - 1y
+
+valuation_metrics:
+  - pe_ttm
+  - pb
+  - ps_ttm
+  - ev_ebitda
+
+quality_rules:
+  require_as_of_date: true
+  require_source: true
+  require_market_scope: true
+  require_004_cross_market_universe: true
+  require_data_for_coverage_required_symbols: true
+  do_not_infer_missing_valuation: true
+  record_permission_limits: true
+  keep_provider_conflicts: true
+
+market_scope_rules:
+  primary_focus_is_not_exclusive: true
+  min_markets_for_004_universe: 2
+  required_market_rows:
+    - US
+    - HK
+    - CN_A
+    - OTHER
+  allow_missing_market_only_with_reason: true

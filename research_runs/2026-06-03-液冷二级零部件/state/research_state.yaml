@@ -1,0 +1,35 @@
+run_id: 2026-06-03-液冷二级零部件
+topic: "液冷的二级零部件：不要只看液冷龙头"
+status: completed_first_pass
+current_step: 009
+research_object: "AI 数据中心液冷系统中的二级/三级零部件，中国上市公司股票为重点"
+previous_outputs:
+  - ../reports/000_scope.md
+  - ../reports/001_value_chain.md
+  - ../reports/002_demand.md
+  - ../reports/003_supply.md
+  - ../reports/004_targets.md
+  - ../reports/005_evidence_audit.md
+  - ../reports/006_pricing.md
+  - ../reports/007_disconfirmation.md
+  - ../reports/008_final_report.md
+  - ../cards/009_research_card.md
+key_claims:
+  - "需求端真实：Blackwell/GB200 NVL72 等高功率 AI rack 已经把液冷推到架构层需求。"
+  - "真正值得拆的是冷板、快接/流体连接器、管路、manifold、泵阀、密封/材料等二级零部件。"
+  - "优先研究川环科技、中航光电；华丰科技和大元泵业进入 A/B 但估值与收入占比需要严格验证。"
+  - "英维克、高澜、申菱更适合做系统集成商参照系，不是本轮核心挖掘目标。"
+  - "股价和估值已明显反映主题预期，不能把主题景气直接等同于可买入结论。"
+open_questions:
+  - "各公司数据中心液冷收入占比、毛利率、订单交付节奏是否能被公告或年报验证？"
+  - "NVIDIA/ODM/OEM 供应链中哪些二级部件国产替代空间最大，认证周期最长？"
+  - "OCP/ORv3 等标准化扩散会提高需求确定性，还是压缩零部件议价能力？"
+  - "冷却液、密封材料、UL/阻燃、泄漏测试等更上游环节是否存在更好的上市公司映射？"
+data_files:
+  - ../market_data/symbol_universe.csv
+  - ../market_data/price_snapshot.csv
+  - ../market_data/valuation_snapshot.csv
+  - ../market_data/liquidity_snapshot.csv
+source_index: ../sources/source_index.md
+evidence_ledger: ../state/evidence_ledger.csv
+next_action: "围绕川环科技、中航光电、华丰科技、大元泵业做逐家公司收入暴露与订单证据复核。"

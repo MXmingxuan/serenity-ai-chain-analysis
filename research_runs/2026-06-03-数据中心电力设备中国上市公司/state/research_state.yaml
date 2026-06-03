@@ -1,0 +1,136 @@
+research_object: "数据中心电力设备——中国上市公司股票为重点"
+run_date: "2026-06-03"
+current_step: 9
+
+object_definition:
+  type: "赛道研究 + 产业链环节研究 + 公司标的研究"
+  ai_chain_category: "AI 数据中心基础设施 / 电力基础设施"
+  upstream:
+    - "电力电子器件"
+    - "铜"
+    - "硅钢片"
+    - "绝缘材料"
+    - "开关元件"
+    - "制造产能和认证"
+  downstream:
+    - "云厂商"
+    - "IDC"
+    - "智算中心"
+    - "通信运营商"
+    - "电网公司"
+    - "海外数据中心开发商"
+  final_demand_source:
+    - "AI 训练和推理需求"
+    - "云厂商 capex"
+    - "数据中心扩建"
+    - "算力枢纽建设"
+
+core_hypotheses:
+  - "AI 数据中心扩张会带动供电、配电、备电和电能质量设备需求。"
+  - "客户认证、交付周期、海外准入和高密度供电方案形成阶段性瓶颈。"
+  - "真正受益公司需要具备数据中心客户、订单、产品和利润兑现证据。"
+  - "部分标的已经被市场明显定价，需要控制追高风险。"
+
+claims:
+  confirmed_facts:
+    - "IEA、CBRE 和国家数据局均提供数据中心电力需求或算电协同证据。"
+    - "金盘科技、明阳电气、科士达、科华数据存在公开数据中心产品或业务披露。"
+    - "Tushare 快照显示多只候选股票过去 12 个月涨幅较大。"
+  reasonable_inferences:
+    - "数据中心电力设备是 AI capex 的二阶/三阶传导机会。"
+    - "数据中心专用 UPS/HVDC/电力模块/变压器/开关柜比泛电网设备更直接受益。"
+    - "当前更适合建立跟踪清单，而不是整篮子追高。"
+  market_narratives:
+    - "所有电力设备公司都受益 AI。"
+    - "变压器必然长期硬短缺。"
+    - "海外 AI 电力缺口会全部由中国公司填补。"
+  unverified_assumptions:
+    - "A 类公司 2026-2027 年数据中心收入占比将快速提升。"
+    - "部分公司具备长约、预付款、涨价或锁产能证据。"
+    - "海外订单毛利率显著高于国内订单。"
+  weak_or_rumor_evidence:
+    - "社媒和部分卖方对 AI 电力设备的泛主题映射。"
+
+open_questions:
+  - "金盘科技、明阳电气、科士达、科华数据、思源电气的数据中心收入占比是多少？"
+  - "是否存在长约、预付款、客户锁产能、产能售罄或明确涨价？"
+  - "海外订单的认证、关税和交付风险如何？"
+  - "高估值标的能否用 2026-2027 年利润兑现？"
+
+chain_position:
+  transmission_stage: "二阶/三阶"
+  transmission_strength: "中等偏强"
+  bottleneck_type: "阶段性瓶颈"
+  pricing_power_initial_view: "分化；高密度数据中心产品强于标准设备"
+
+demand:
+  status: "真实加速，但个股兑现分化"
+  strongest_evidence:
+    - "IEA 数据中心用电增长预测"
+    - "CBRE 电力容量约束和高预租率"
+    - "国家数据局算电协同政策"
+    - "公司公开产品和业务披露"
+  biggest_doubt: "个股订单、收入占比和毛利率披露不足"
+  expected_duration: "1-3 年建设周期"
+
+supply:
+  elasticity_score: 3.25
+  bottleneck_nature: "阶段性瓶颈"
+  bottleneck_duration: "1-3 年，需季度验证"
+  profit_conversion_view: "可转化，但依赖订单、产品结构、海外客户和毛利率"
+
+targets:
+  high_priority:
+    - "金盘科技"
+    - "明阳电气"
+    - "科士达"
+    - "科华数据"
+    - "思源电气"
+  watchlist:
+    - "伊戈尔"
+    - "中国西电"
+    - "平高电气"
+    - "许继电气"
+    - "特变电工"
+    - "盛弘股份"
+  theme_only:
+    - "麦格米特"
+
+evidence_summary:
+  s_level: []
+  a_level:
+    - "公司公告、年报、半年报、官网产品披露"
+    - "Tushare 结构化行情和估值数据"
+  b_level:
+    - "IEA、CBRE、国家数据局行业和政策证据"
+  c_or_d_level:
+    - "泛 AI 电力设备概念映射"
+  biggest_gap: "长约、预付款、涨价、交期、数据中心收入占比"
+
+pricing:
+  crowdedness: "部分明显拥挤"
+  valuation_risk: "金盘、思源、伊戈尔、中国西电、麦格米特较高"
+  priced_in_view: "产业逻辑已被部分定价，需等待订单和估值再平衡"
+
+disconfirmation:
+  top_signals:
+    - "数据中心订单不增长"
+    - "毛利率不改善"
+    - "经营现金流弱于净利润"
+    - "交期缩短或报价下降"
+    - "AI capex 下修"
+  review_windows:
+    one_quarter: "若无订单或收入增量披露，降低主题权重"
+    two_quarters: "若毛利率和现金流不改善，降低 A 类优先级"
+    four_quarters: "若无 S/A 级证据，从高优先级降为观察池"
+
+final_action:
+  action: "建立跟踪清单 + 深度研究"
+  reason: "产业方向真实，但个股证据和市场定价分化明显"
+  missing_evidence:
+    - "S/A 级订单"
+    - "数据中心收入占比"
+    - "毛利率和现金流改善"
+    - "长约、预付款、涨价和交期证据"
+  next_review_condition: "2026 年中报或下一次明确订单披露后，重跑 004-007"
+

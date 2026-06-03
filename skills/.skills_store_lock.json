@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "skills": {
+    "yahoo-finance": {
+      "name": "Yahoo Finance",
+      "zip_url": "https://api.skillhub.cn/api/v1/download?slug=yahoo-finance",
+      "source": "community",
+      "version": "1.0.0",
+      "installedAt": "2026-06-03T04:02:02Z"
+    },
+    "yahoo-finance-cli": {
+      "name": "Yahoo Finance CLI",
+      "zip_url": "https://api.skillhub.cn/api/v1/download?slug=yahoo-finance-cli",
+      "source": "community",
+      "version": "1.0.0",
+      "installedAt": "2026-06-03T04:02:35Z"
+    }
+  }
+}
