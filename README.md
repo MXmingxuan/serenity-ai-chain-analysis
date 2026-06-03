@@ -26,6 +26,60 @@
 | 008 | `008.md` | 输出综合研究报告 |
 | 009 | `009.md` | 沉淀研究卡片 |
 
+## Agent Harness 架构图
+
+```mermaid
+flowchart TD
+    A["研究对象"] --> B["Capability Preflight<br/>Python / Web Search / Browser / Tushare / Yahoo CLI / Git"]
+    B --> C{"能力门槛"}
+    C -- "搜索能力完整" --> D["000-009 Prompt Chain"]
+    C -- "搜索缺失" --> C1["降级模式<br/>只整理已有材料或用户提供 source pack"]
+    C1 --> D
+
+    subgraph P["协议控制层"]
+        P1["AGENT_CAPABILITY_MATRIX.md<br/>跨 agent 能力声明"]
+        P2["SEARCH_PROTOCOL.md<br/>搜索意图、来源优先级、accepted/rejected/gaps"]
+        P3["CONTEXT_PACK_PROTOCOL.md<br/>just-in-time context 加载"]
+        P4["RUN_TRACE_SCHEMA.md<br/>append-only 执行日志"]
+        P5["MEMORY_TAXONOMY.md<br/>规则、状态、实体、证据、执行记忆分层"]
+    end
+
+    P1 --> B
+    P2 --> E["Search Packet<br/>sources/search_packet.md"]
+    P3 --> F["Context Pack<br/>上一步报告 + 索引 + 必要全文"]
+    P4 --> G["Run Trace<br/>state/run_trace.jsonl"]
+    P5 --> H["Memory Updates<br/>事实优先、可覆盖、必须带来源"]
+
+    D --> S1["000 Scope"]
+    S1 --> S2["001 产业链位置"]
+    S2 --> S3["002 需求验证"]
+    S3 --> S4["003 供给瓶颈"]
+    S4 --> S5["004 跨市场标的映射"]
+    S5 --> S6["005 证据分级"]
+    S6 --> S7["006 结构化市场定价<br/>A股 Tushare / 海外 Yahoo CLI"]
+    S7 --> S8["007 风险与反证"]
+    S8 --> S9["008 Markdown 最终报告"]
+    S9 --> S10["009 研究卡片"]
+
+    E --> S3
+    E --> S4
+    E --> S5
+    F --> D
+    H --> F
+
+    S3 --> I["Evidence Ledger<br/>state/evidence_ledger.csv"]
+    S5 --> J["Symbol Universe<br/>state/symbol_universe.csv"]
+    S7 --> K["Market Data<br/>price / valuation / liquidity snapshots"]
+    S9 --> L["HTML 展示层<br/>html/008_final_report.html"]
+
+    I --> M["validate_run.py"]
+    J --> M
+    K --> M
+    G --> M
+    L --> M
+    M --> N["可复盘研究包<br/>Markdown + HTML + Sources + Trace + Data"]
+```
+
 ## 核心框架
 
 - `AGENT_FRAMEWORK.md`：主研究框架。
