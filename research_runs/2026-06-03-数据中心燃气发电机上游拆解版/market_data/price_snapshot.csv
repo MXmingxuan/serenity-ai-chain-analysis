@@ -1,0 +1,25 @@
+symbol,market,name,as_of,currency,close,return_1m,return_3m,return_6m,return_12m,relative_to_52w_high,relative_to_52w_low,source
+CMI,US,Cummins,2026-06-02,USD,672.67,2.32,20.1,35.08,107.31,-6.32,118.47,Yahoo Finance via yfinance
+GNRC,US,Generac,2026-06-02,USD,284.58,9.73,28.65,87.68,123.67,-3.26,136.28,Yahoo Finance via yfinance
+HWM,US,Howmet Aerospace,2026-06-02,USD,250.72,4.68,-3.14,22.55,45.25,-10.69,51.48,Yahoo Finance via yfinance
+ENR.DE,EU,Siemens Energy,2026-06-03,EUR,160.34,-12.17,3.18,40.16,81.13,-16.34,95.3,Yahoo Finance via yfinance
+WRT1V.HE,EU,Wartsila,2026-06-03,EUR,35.18,-1.15,-2.14,31.12,97.31,-13.67,100.46,Yahoo Finance via yfinance
+OERL.SW,EU,Oerlikon,2026-06-03,CHF,3.735,9.37,-11.7,24.09,0.95,-15.84,43.1,Yahoo Finance via yfinance
+7011.T,JP,Mitsubishi Heavy Industries,2026-06-03,JPY,3573.0,-22.58,-28.74,-7.32,6.21,-31.39,12.68,Yahoo Finance via yfinance
+7012.T,JP,Kawasaki Heavy Industries,2026-06-03,JPY,2836.5,-11.83,-22.31,41.88,31.02,-24.68,64.05,Yahoo Finance via yfinance
+2727.HK,HK,Shanghai Electric H,2026-06-03,HKD,4.13,3.51,-12.68,3.77,52.96,-27.67,55.85,Yahoo Finance via yfinance
+1072.HK,HK,Dongfang Electric H,2026-06-03,HKD,32.58,-17.81,-17.69,64.63,169.26,-72.83,181.35,Yahoo Finance via yfinance
+2338.HK,HK,Weichai Power H,2026-06-03,HKD,39.88,-7.94,22.26,115.22,157.29,-12.24,192.8,Yahoo Finance via yfinance
+601727.SH,CN_A,Shanghai Electric,20260603,CNY,7.94,-1.73,-10.99,-4.68,7.73,-29.23,22.91,Tushare pro.daily
+600875.SH,CN_A,Dongfang Electric,20260603,CNY,33.41,-14.36,-10.93,64.58,107.0,-26.38,137.96,Tushare pro.daily
+002353.SZ,CN_A,Jereh Group,20260603,CNY,143.04,4.41,14.44,181.08,313.89,-7.38,419.39,Tushare pro.daily
+000338.SZ,CN_A,Weichai Power,20260603,CNY,32.27,3.43,16.41,93.7,116.43,-11.2,136.41,Tushare pro.daily
+300153.SZ,CN_A,Ketopower,20260603,CNY,26.17,-17.34,-32.27,-10.38,-10.47,-48.67,10.47,Tushare pro.daily
+603308.SH,CN_A,Yingliu,20260603,CNY,63.87,-15.49,-4.84,76.1,197.21,-24.56,334.19,Tushare pro.daily
+000534.SZ,CN_A,Wanze,20260603,CNY,30.84,-21.98,-22.08,52.22,105.33,-37.24,138.88,Tushare pro.daily
+300034.SZ,CN_A,Gangyan Gaona,20260603,CNY,18.0,-8.4,-23.7,14.07,13.42,-29.38,30.15,Tushare pro.daily
+300855.SZ,CN_A,Tunan,20260603,CNY,34.16,-13.03,-24.84,25.4,49.82,-31.41,76.63,Tushare pro.daily
+600399.SH,CN_A,Fushun Special Steel,20260603,CNY,4.56,-16.64,-41.46,-13.14,-12.98,-44.79,0.0,Tushare pro.daily
+688122.SH,CN_A,Western Superconducting,20260603,CNY,63.9,-1.27,-29.79,-0.02,29.72,-41.91,55.06,Tushare pro.daily
+GEV,US,GE Vernova,2026-06-02,USD,969.67,-8.78,15.16,61.67,96.7,-17.96,111.42,Yahoo Finance via yfinance
+CAT,US,Caterpillar,2026-06-02,USD,909.81,2.26,25.98,58.02,160.39,-2.31,163.77,Yahoo Finance via yfinance

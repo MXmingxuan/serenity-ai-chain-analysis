@@ -1,0 +1,41 @@
+{
+  "agent_name": "Codex",
+  "timestamp": "2026-06-03T11:26:14.104770+00:00",
+  "project_root": "D:\\github\\Serenity分析",
+  "python": {
+    "available": true,
+    "executable": "C:\\veighna_studio\\python.exe",
+    "version": "3.13.8"
+  },
+  "tushare": {
+    "package_available": true,
+    "token_present": true,
+    "status": "available"
+  },
+  "yahoo_cli": {
+    "uv_available": true,
+    "uv_path": "C:\\Users\\mingxuan\\.local\\bin\\uv.EXE",
+    "uv_version": "uv 0.11.7 (9d177269e 2026-04-15 x86_64-pc-windows-msvc)",
+    "tools_yf_exists": true,
+    "help_smoke_ok": null,
+    "status": "available",
+    "error": ""
+  },
+  "web_search": {
+    "declared": "yes",
+    "notes": "Manual declaration; local script cannot detect agent-native search."
+  },
+  "browser": {
+    "declared": "yes",
+    "notes": "Manual declaration; local script cannot detect agent-native browser tools."
+  },
+  "git": {
+    "available": true,
+    "version": "git version 2.54.0.windows.1"
+  },
+  "file_write": {
+    "available": true,
+    "notes": "This report was written successfully."
+  },
+  "limitations": []
+}

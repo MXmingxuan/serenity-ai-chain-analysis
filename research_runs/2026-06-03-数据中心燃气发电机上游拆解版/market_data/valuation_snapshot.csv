@@ -1,0 +1,25 @@
+symbol,market,name,as_of,market_cap,pe_ttm,pb,ps_ttm,ev_ebitda,pe_percentile_3y,pe_percentile_5y,peer_group,source
+CMI,US,Cummins,2026-06-02,92821103340.6784,,,,,,,data_center_gas_power_components,Yahoo Finance via yfinance fast path
+GNRC,US,Generac,2026-06-02,16752848448.506989,,,,,,,data_center_gas_power_components,Yahoo Finance via yfinance fast path
+HWM,US,Howmet Aerospace,2026-06-02,100314948626.17245,,,,,,,data_center_gas_power_components,Yahoo Finance via yfinance fast path
+ENR.DE,EU,Siemens Energy,2026-06-03,136425056116.87949,,,,,,,data_center_gas_power_components,Yahoo Finance via yfinance fast path
+WRT1V.HE,EU,Wartsila,2026-06-03,20740237184.555237,,,,,,,data_center_gas_power_components,Yahoo Finance via yfinance fast path
+OERL.SW,EU,Oerlikon,2026-06-03,1219194629.146731,,,,,,,data_center_gas_power_components,Yahoo Finance via yfinance fast path
+7011.T,JP,Mitsubishi Heavy Industries,2026-06-03,12006027971820.0,,,,,,,data_center_gas_power_components,Yahoo Finance via yfinance fast path
+7012.T,JP,Kawasaki Heavy Industries,2026-06-03,2370883022190.0,,,,,,,data_center_gas_power_components,Yahoo Finance via yfinance fast path
+2727.HK,HK,Shanghai Electric H,2026-06-03,64180704135.10579,,,,,,,data_center_gas_power_components,Yahoo Finance via yfinance fast path
+1072.HK,HK,Dongfang Electric H,2026-06-03,112673385753.52689,,,,,,,data_center_gas_power_components,Yahoo Finance via yfinance fast path
+2338.HK,HK,Weichai Power H,2026-06-03,345446336737.6486,,,,,,,data_center_gas_power_components,Yahoo Finance via yfinance fast path
+601727.SH,CN_A,Shanghai Electric,20260603,12338856.579,95.3281,2.2478,0.9636,,,,data_center_gas_power_components,Tushare pro.daily_basic
+600875.SH,CN_A,Dongfang Electric,20260603,11554381.8492,27.1043,2.4645,1.4717,,,,data_center_gas_power_components,Tushare pro.daily_basic
+002353.SZ,CN_A,Jereh Group,20260603,14645233.8352,52.2475,6.2341,8.7034,,,,data_center_gas_power_components,Tushare pro.daily_basic
+000338.SZ,CN_A,Weichai Power,20260603,27952740.692,24.7251,2.9547,1.1799,,,,data_center_gas_power_components,Tushare pro.daily_basic
+300153.SZ,CN_A,Ketopower,20260603,837440.0,145.8301,9.1545,4.1528,,,,data_center_gas_power_components,Tushare pro.daily_basic
+603308.SH,CN_A,Yingliu,20260603,4337078.2028,115.114,8.7521,13.7905,,,,data_center_gas_power_components,Tushare pro.daily_basic
+000534.SZ,CN_A,Wanze,20260603,1571447.6233,77.8724,9.149,11.9479,,,,data_center_gas_power_components,Tushare pro.daily_basic
+300034.SZ,CN_A,Gangyan Gaona,20260603,1434530.8134,143.7579,3.7214,3.8054,,,,data_center_gas_power_components,Tushare pro.daily_basic
+300855.SZ,CN_A,Tunan,20260603,1351135.604,64.5989,6.4232,11.4261,,,,data_center_gas_power_components,Tushare pro.daily_basic
+600399.SH,CN_A,Fushun Special Steel,20260603,899277.6,nan,1.6754,1.1345,,,,data_center_gas_power_components,Tushare pro.daily_basic
+688122.SH,CN_A,Western Superconducting,20260603,4151356.1358,58.2146,5.7861,7.934,,,,data_center_gas_power_components,Tushare pro.daily_basic
+GEV,US,GE Vernova,2026-06-02,260569710592,28.328075,18.716246,6.6176434,,,,data_center_gas_power,Yahoo Finance via yfinance
+CAT,US,Caterpillar,2026-06-02,419051175936,45.24167,22.458344,5.9225664,,,,data_center_gas_power,Yahoo Finance via yfinance

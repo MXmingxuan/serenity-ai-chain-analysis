@@ -1,0 +1,25 @@
+symbol,market,name,as_of,amount_latest,amount_avg_20d,amount_avg_60d,amount_percentile_1y,turnover_latest,turnover_avg_20d,turnover_percentile_1y,volume_spike_flag,source
+CMI,US,Cummins,2026-06-02,718344274.75,690122405.62,587127662.3,,,,,no,Yahoo Finance via yfinance
+GNRC,US,Generac,2026-06-02,441895803.15,234926470.52,257314378.06,,,,,no,Yahoo Finance via yfinance
+HWM,US,Howmet Aerospace,2026-06-02,704999571.43,685343123.34,601041447.99,,,,,no,Yahoo Finance via yfinance
+ENR.DE,EU,Siemens Energy,2026-06-03,121676090.64,394501473.0,436907484.39,,,,,no,Yahoo Finance via yfinance
+WRT1V.HE,EU,Wartsila,2026-06-03,8710884.7,21566636.57,30538799.02,,,,,no,Yahoo Finance via yfinance
+OERL.SW,EU,Oerlikon,2026-06-03,529731.3,1688423.51,2511202.34,,,,,no,Yahoo Finance via yfinance
+7011.T,JP,Mitsubishi Heavy Industries,2026-06-03,109542820500.0,102948277320.0,90283868145.0,,,,,no,Yahoo Finance via yfinance
+7012.T,JP,Kawasaki Heavy Industries,2026-06-03,32264336550.0,44858098717.5,44581024670.0,,,,,no,Yahoo Finance via yfinance
+2727.HK,HK,Shanghai Electric H,2026-06-03,102291834.57,333040810.52,216972990.86,,,,,no,Yahoo Finance via yfinance
+1072.HK,HK,Dongfang Electric H,2026-06-03,234562916.02,450510658.3,501738850.99,,,,,no,Yahoo Finance via yfinance
+2338.HK,HK,Weichai Power H,2026-06-03,902207417.68,899448836.26,858990453.54,,,,,no,Yahoo Finance via yfinance
+601727.SH,CN_A,Shanghai Electric,20260603,,,,,0.943,2.2965,,no,Tushare pro.daily_basic
+600875.SH,CN_A,Dongfang Electric,20260603,,,,,2.842,3.6518,,no,Tushare pro.daily_basic
+002353.SZ,CN_A,Jereh Group,20260603,,,,,3.0486,2.6247,,no,Tushare pro.daily_basic
+000338.SZ,CN_A,Weichai Power,20260603,,,,,1.9672,2.3308,,no,Tushare pro.daily_basic
+300153.SZ,CN_A,Ketopower,20260603,,,,,3.0407,6.4012,,no,Tushare pro.daily_basic
+603308.SH,CN_A,Yingliu,20260603,,,,,3.3264,3.1531,,no,Tushare pro.daily_basic
+000534.SZ,CN_A,Wanze,20260603,,,,,4.5127,4.9671,,no,Tushare pro.daily_basic
+300034.SZ,CN_A,Gangyan Gaona,20260603,,,,,1.5402,2.4989,,no,Tushare pro.daily_basic
+300855.SZ,CN_A,Tunan,20260603,,,,,3.9658,2.8723,,no,Tushare pro.daily_basic
+600399.SH,CN_A,Fushun Special Steel,20260603,,,,,1.9272,2.0886,,no,Tushare pro.daily_basic
+688122.SH,CN_A,Western Superconducting,20260603,,,,,3.2015,2.9765,,no,Tushare pro.daily_basic
+GEV,US,GE Vernova,2026-06-02,2176230342.65,2302786820.46,2437624279.94,,,,,no,Yahoo Finance via yfinance
+CAT,US,Caterpillar,2026-06-02,2560569257.13,2414594792.07,2270765962.26,,,,,no,Yahoo Finance via yfinance

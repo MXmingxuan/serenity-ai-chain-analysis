@@ -1,0 +1,160 @@
+research_object: "数据中心燃气发电机上游拆解版"
+run_date: "2026-06-03"
+current_step: 9
+trace_file: "state/run_trace.jsonl"
+
+agent_capabilities:
+  report_file: "state/capability_report.json"
+  agent_name: "Codex"
+  web_search: "yes"
+  browser: "yes"
+  python: "available"
+  tushare: "available"
+  yahoo_cli: "available"
+  git: "available"
+  limitations:
+    - "Search and market data are point-in-time as of 2026-06-03."
+    - "Some overseas valuation fields are sparse because the rerun used a fast Yahoo path."
+    - "GEV and CAT market-data rows were reused from the same-day prior run after transient Yahoo download failures."
+
+context_pack:
+  protocol_file: "CONTEXT_PACK_PROTOCOL.md"
+  current_step_context:
+    - "AGENTS.md"
+    - "AGENT_FRAMEWORK.md"
+    - "FRAMEWORK_ADDENDUM_CROSS_MARKET.md"
+    - "COMPONENT_DECOMPOSITION_PROTOCOL.md"
+    - "SEARCH_PROTOCOL.md"
+    - "RUN_TRACE_SCHEMA.md"
+  excluded_context:
+    - "Unrelated research runs."
+  compression_notes: "Rerun starts from prior gas-generator case and inserts component decomposition between 003 and 004."
+
+memory_updates:
+  project_rules: []
+  run_state:
+    - "Component-decomposition rerun created to split system/OEM and upstream hot-section/material/process layers."
+  entity_memory: []
+  evidence_memory: []
+  execution_memory:
+    - "Yahoo transient failures for GEV/CAT were handled by reusing same-day cached provider rows from prior run."
+
+market_scope:
+  primary_focus: ["US", "CN_A"]
+  required_comparison_markets: ["US", "CN_A", "HK", "EU", "JP"]
+  optional_markets: ["KR", "TW"]
+  excluded_markets: []
+  exclusion_reasons: {}
+
+competitive_universe:
+  global_leaders: ["GE Vernova", "Caterpillar", "Cummins", "Siemens Energy", "Mitsubishi Heavy Industries", "Kawasaki Heavy Industries", "Wartsila"]
+  component_comparables: ["Howmet Aerospace", "Oerlikon", "Yingliu", "Wanze", "Gangyan Gaona", "Tunan", "Fushun Special Steel", "Western Superconducting"]
+  downstream_customers: ["hyperscalers", "colocation data centers", "AI cloud operators", "utilities", "independent power producers"]
+  listed_comparables: ["GEV", "CAT", "CMI", "HWM", "ENR.DE", "WRT1V.HE", "OERL.SW", "7011.T", "7012.T", "603308.SH", "000534.SZ", "300034.SZ", "300855.SZ"]
+
+market_data_coverage:
+  required_markets: ["US", "CN_A", "HK", "EU", "JP"]
+  covered_markets: ["US", "CN_A", "HK", "EU", "JP"]
+  missing_markets: []
+  missing_reason: {}
+
+object_definition:
+  type: "产业链环节"
+  ai_chain_category: "AI data center power infrastructure"
+  upstream: ["gas turbines", "gas engines", "hot gas path components", "superalloys", "thermal barrier coatings", "precision casting", "aftermarket service"]
+  downstream: ["data center developers", "hyperscalers", "colocation operators", "utilities and IPPs"]
+  final_demand_source: ["AI training and inference compute demand", "data center power capacity shortage", "grid interconnection delays"]
+
+core_hypotheses:
+  - "AI data center power demand creates real but conditional demand for onsite or bridge gas power."
+  - "The more interesting upstream bottleneck may sit in hot gas path parts, superalloys, coatings, precision casting and aftermarket service."
+  - "China-listed component names require evidence gates because direct data-center gas-turbine order transmission is not yet verified."
+
+claims:
+  confirmed_facts:
+    - "Wartsila disclosed a 412MW U.S. hyperscale data-center gas-engine order."
+    - "Mitsubishi Power disclosed gas turbine allocation for 1,150MW onsite data-center power at Cheyenne Power Hub."
+    - "Howmet and Oerlikon disclose industrial gas turbine hot-section component/coating capabilities."
+  reasonable_inferences:
+    - "If data-center gas-turbine orders grow, hot-section parts and superalloy demand may rise."
+  market_narratives:
+    - "AI data-center electricity pressure has increased investor attention on gas power and upstream component companies."
+  unverified_assumptions:
+    - "China-listed hot-section and superalloy companies will obtain material data-center gas-turbine order exposure."
+  weak_or_rumor_evidence: []
+
+open_questions:
+  - "Which OEMs source hot-section parts from listed suppliers rather than captive or private suppliers?"
+  - "What share of Howmet/Oerlikon/Yingliu/Wanze/Gangyan revenue is industrial gas turbine related?"
+  - "Can Chinese component suppliers show OEM qualification, first-article approval, batch supply or aftermarket service evidence?"
+
+chain_position:
+  transmission_stage: "second to fourth order"
+  transmission_strength: "medium-high for system/OEM, medium and evidence-gated for component layer"
+  bottleneck_type: "stage bottleneck with upstream hot-section/material/process constraints"
+  pricing_power_initial_view: "strongest in OEM service and qualified hot-section components"
+
+demand:
+  status: "real but conditional"
+  strongest_evidence: ["Wartsila 412MW order", "Mitsubishi Power Cheyenne Power Hub", "GE Vernova/Chevron 4GW target"]
+  biggest_doubt: "Gas generation may be replaced by utility PPA, grid expansion, nuclear, renewables plus storage, or other power solutions."
+  expected_duration: "2-5 years as bridge/stage demand, subject to project permitting and grid conditions."
+
+supply:
+  elasticity_score: 3.8
+  bottleneck_nature: "hot-section parts, superalloys, coatings, precision casting, OEM qualification and aftermarket service."
+  bottleneck_duration: "2-4 years if data-center gas turbine orders persist."
+  profit_conversion_view: "Best for OEM service, qualified hot-section components and aftermarket coatings/repairs; weaker for unqualified thematic suppliers."
+
+component_decomposition:
+  required: true
+  report_file: "reports/003_component_decomposition.md"
+  system_oems: ["GE Vernova", "Wartsila", "Mitsubishi Heavy Industries", "Cummins", "Siemens Energy", "Caterpillar", "Shanghai Electric", "Dongfang Electric", "Jereh Group"]
+  first_level_modules: ["turbine island", "gas engine block", "generator set", "switchgear", "balance of plant"]
+  second_level_parts: ["turbine blades", "vanes", "combustor liners", "shrouds", "transition pieces", "seals"]
+  critical_materials: ["superalloy", "single-crystal superalloy", "ceramic core", "thermal barrier coating"]
+  process_equipment: ["precision casting", "directional solidification", "HIP", "coating", "heat treatment", "NDT", "machining"]
+  aftermarket_services: ["hot gas path repair", "spare parts", "long-term service agreements", "coating repair"]
+  certification_bottlenecks: ["OEM qualification", "first-article approval", "data-center reliability requirements", "environmental permitting"]
+  missing_layers: ["public OEM supplier qualification lists", "component-level data-center order transmission", "hot-section aftermarket profit split"]
+
+targets:
+  high_priority: ["GEV", "WRT1V.HE", "7011.T", "CMI", "HWM"]
+  watchlist: ["ENR.DE", "CAT", "OERL.SW", "603308.SH", "000534.SZ", "300034.SZ", "300855.SZ", "002353.SZ", "601727.SH", "600875.SH", "000338.SZ"]
+  theme_only: ["GNRC", "300153.SZ", "2688.HK", "600399.SH", "688122.SH"]
+  overseas_comparables: ["GEV", "CAT", "CMI", "GNRC", "HWM", "ENR.DE", "WRT1V.HE", "OERL.SW", "7011.T", "7012.T"]
+  missing_market_candidates: []
+
+evidence_summary:
+  s_level: ["Wartsila 412MW data-center gas-engine order", "Mitsubishi Power 1,150MW onsite data-center power project"]
+  a_level: ["GE Vernova/Chevron data-center gas power target", "Cummins data-center power demand", "MHI China hot-section component manufacturing/service base"]
+  b_level: ["Howmet industrial gas turbine hot-section components", "Oerlikon hot-section coating", "Yingliu hot-section/process capability", "Wanze/Gangyan/Tunan superalloy capability"]
+  c_or_d_level: ["China-listed direct data-center gas-turbine order transmission", "generic high-temperature alloy concept mapping"]
+  biggest_gap: "Component-level transmission from data-center gas-turbine orders to specific hot-section, coating and superalloy suppliers is not yet verified."
+
+pricing:
+  crowdedness: "high"
+  valuation_risk: "high for many system/OEM and A-share component names, especially Jereh, Yingliu, Wanze, CAT, CMI, GEV and Siemens Energy"
+  priced_in_view: "theme is substantially priced in; upstream component layer is not automatically cheap."
+
+disconfirmation:
+  top_signals:
+    - "Onsite gas projects are delayed or canceled."
+    - "Utility/PPA/nuclear/storage solutions replace gas power."
+    - "OEM financials do not show data-center order or margin conversion."
+    - "Component orders do not transmit to hot-section, coating, superalloy or aftermarket suppliers."
+    - "China-listed component companies do not disclose OEM qualification, batch supply or revenue share."
+  review_windows:
+    one_quarter: "watch for new component order or certification evidence"
+    two_quarters: "downgrade component names without revenue/order progress"
+    four_quarters: "move to theme observation if no component transmission appears"
+
+final_action:
+  research_priority: "medium-high"
+  valuation_gate: "required"
+  exposure_proof: "OEM qualification, component backlog, revenue share and aftermarket margin evidence"
+  action: "build layered tracking list; separate system/OEM and component-layer research"
+  reason: "demand evidence is real and upstream components are harder bottlenecks, but component transmission and valuation remain unresolved."
+  missing_evidence: ["OEM qualification", "component backlog", "hot-section revenue share", "data-center order transmission", "aftermarket margin split"]
+  next_review_condition: "new component order or certification evidence, system/OEM backlog disclosure, valuation reset, or direct China-listed component project announcement."
+  not_investment_advice: true

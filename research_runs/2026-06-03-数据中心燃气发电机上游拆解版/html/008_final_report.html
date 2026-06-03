@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>数据中心燃气发电机上游拆解版 | AI 供应链瓶颈研究报告</title>
+  <style>
+    :root{--bg:#090a08;--panel:#11130f;--panel2:#171a13;--line:#3a3f2b;--text:#f1f4df;--muted:#a8ad92;--amber:#f4b942;--green:#8bd46e;--red:#ee6b5a;--cyan:#76c7c0}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:"Segoe UI",Arial,"Microsoft YaHei",sans-serif;line-height:1.55}
+    header{padding:28px 32px 18px;border-bottom:1px solid var(--line);background:#0d0f0a}
+    main{padding:22px 32px 40px;max-width:1440px;margin:auto}.kicker{color:var(--amber);font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+    h1{margin:8px 0 10px;font-size:clamp(28px,4vw,52px);line-height:1.05;letter-spacing:0}.sub{max-width:1120px;color:var(--muted);font-size:15px}
+    a{color:var(--amber);text-decoration:none}.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.links a{border:1px solid var(--line);padding:7px 10px;background:var(--panel);color:var(--text);font-size:13px}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}section{border:1px solid var(--line);background:var(--panel);padding:16px}.span4{grid-column:span 4}.span6{grid-column:span 6}.span8{grid-column:span 8}.span12{grid-column:span 12}
+    h2{margin:0 0 12px;font-size:17px;color:var(--amber);border-bottom:1px solid var(--line);padding-bottom:8px;letter-spacing:0}p,li{font-size:14px}.note{color:var(--muted);font-size:13px}
+    .metric{display:grid;grid-template-columns:1fr auto;gap:8px;padding:7px 0;border-bottom:1px solid rgba(58,63,43,.7);font-size:14px}.metric:last-child{border-bottom:0}.label{color:var(--muted)}.value{font-weight:700}.good{color:var(--green)}.warn{color:var(--amber)}.bad{color:var(--red)}
+    table{width:100%;border-collapse:collapse;font-size:13px}th,td{border-bottom:1px solid var(--line);padding:8px 7px;text-align:left;vertical-align:top}th{color:var(--amber);background:var(--panel2)}
+    .tag{display:inline-block;padding:2px 6px;border:1px solid var(--line);background:var(--panel2);font-size:12px;white-space:nowrap}.callout{border-left:4px solid var(--amber);background:#15160f;padding:10px 12px;margin:10px 0}
+    @media(max-width:900px){header,main{padding-left:18px;padding-right:18px}.span4,.span6,.span8,.span12{grid-column:span 12}table{font-size:12px}th,td{padding:7px 5px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="kicker">Serenity AI Chain Analysis / Component Decomposition Run</div>
+    <h1>数据中心燃气发电机上游拆解版</h1>
+    <p class="sub">这次不只看燃气发电机主机或数据中心电源方案，而是拆到燃机热端叶片、导向叶片、燃烧室、高温合金、热障涂层、精密铸造和后市场服务。</p>
+    <div class="links">
+      <a href="../reports/008_final_report.md">Markdown 源报告</a>
+      <a href="../reports/003_component_decomposition.md">Component Decomposition</a>
+      <a href="../sources/source_index.md">Source Index</a>
+      <a href="../sources/search_packet.md">Search Packet</a>
+      <a href="../market_data/price_snapshot.csv">Price Snapshot</a>
+      <a href="../cards/009_research_card.md">Research Card</a>
+    </div>
+  </header>
+  <main>
+    <div class="grid">
+      <section class="span4">
+        <h2>结论面板</h2>
+        <div class="metric"><span class="label">结论类型</span><span class="value warn">分层观察 + 深研</span></div>
+        <div class="metric"><span class="label">主机订单证据</span><span class="value good">S/A 级</span></div>
+        <div class="metric"><span class="label">组件传导证据</span><span class="value warn">B/C 级</span></div>
+        <div class="metric"><span class="label">供给瓶颈</span><span class="value warn">3.8/5</span></div>
+        <div class="metric"><span class="label">市场拥挤度</span><span class="value bad">高</span></div>
+      </section>
+      <section class="span8">
+        <h2>核心判断</h2>
+        <div class="callout">数据中心燃气发电需求是真实线索，但更有瓶颈属性的是热端件、高温合金、涂层、精密铸造和后市场服务。中国上游公司不能直接按“数据中心订单受益”处理，必须等待 OEM 认证、批量供货和收入占比证据。</div>
+        <p>主机/OEM 层的证据最强，组件层的制造壁垒更高；这两件事需要分开研究。逻辑真实不等于价格便宜，上游 component names 已经被市场部分交易。</p>
+      </section>
+      <section class="span12">
+        <h2>Component Decomposition</h2>
+        <table>
+          <thead><tr><th>层级</th><th>关键环节</th><th>为什么难</th><th>代表映射</th></tr></thead>
+          <tbody>
+            <tr><td>System/OEM</td><td>燃机、燃气发动机、数据中心电源方案</td><td>项目交付、客户认证、服务合同</td><td>GEV, Wartsila, MHI, Cummins, Siemens</td></tr>
+            <tr><td>二级零部件</td><td>透平叶片、导向叶片、燃烧室、seals</td><td>高温、高压、腐蚀、疲劳、冷却结构</td><td>Howmet, Yingliu, Wanze, Gangyan Gaona</td></tr>
+            <tr><td>关键材料</td><td>单晶/定向凝固高温合金、陶瓷芯</td><td>组织稳定性、纯净度、良率</td><td>Wanze, Gangyan Gaona, Tunan, Fushun Special Steel</td></tr>
+            <tr><td>工艺/后市场</td><td>涂层、热处理、NDT、hot gas path repair</td><td>认证壁垒、运行小时驱动复购</td><td>Oerlikon, Howmet, OEM service ecosystem</td></tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="span6">
+        <h2>重点标的雷达</h2>
+        <table>
+          <thead><tr><th>公司</th><th>层级</th><th>证据</th><th>拥挤度</th></tr></thead>
+          <tbody>
+            <tr><td>Wartsila / MHI</td><td>主机/OEM</td><td><span class="tag">S</span> 订单/项目</td><td>高/中</td></tr>
+            <tr><td>GEV / Cummins</td><td>主机/OEM</td><td><span class="tag">A</span> 官方证据</td><td>高</td></tr>
+            <tr><td>Howmet</td><td>热端件</td><td><span class="tag">B</span> IGT airfoils/coatings</td><td>中</td></tr>
+            <tr><td>应流股份</td><td>热端件/精密铸造</td><td><span class="tag">B</span> 能力清晰</td><td>极高</td></tr>
+            <tr><td>万泽 / 钢研高纳</td><td>高温合金</td><td><span class="tag">B</span> 材料映射</td><td>高/中</td></tr>
+            <tr><td>Oerlikon</td><td>涂层/工艺</td><td><span class="tag">B</span> hot-section coating</td><td>中低</td></tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="span6">
+        <h2>市场定价信号</h2>
+        <table>
+          <thead><tr><th>标的</th><th>12个月涨幅</th><th>含义</th></tr></thead>
+          <tbody>
+            <tr><td>Jereh</td><td>313.89%</td><td>系统/模块映射极拥挤</td></tr>
+            <tr><td>Yingliu</td><td>197.21%</td><td>热端件映射也已被交易</td></tr>
+            <tr><td>Wanze</td><td>105.33%</td><td>单晶叶片逻辑不便宜</td></tr>
+            <tr><td>Howmet</td><td>45.25%</td><td>海外组件对标，中等拥挤</td></tr>
+            <tr><td>Oerlikon</td><td>0.95%</td><td>价格不极端，但业务占比需拆</td></tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="span12">
+        <h2>反证条件</h2>
+        <ul>
+          <li>主机订单没有传导到热端件、高温合金、涂层和维修服务。</li>
+          <li>中国 component companies 没有 OEM 认证、首件鉴定、批量供货或收入占比改善。</li>
+          <li>OEM 内部消化热端件，外部上市公司只停留在能力映射。</li>
+          <li>高估值上游标的利好不涨、小利空大跌。</li>
+          <li>2-4 个季度内没有 component backlog 或毛利兑现。</li>
+        </ul>
+        <p class="note">本报告仅作为研究雷达和证据资产，不构成投资建议。</p>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
