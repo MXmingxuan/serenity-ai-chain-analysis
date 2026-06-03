@@ -18,6 +18,7 @@ This project can be run by Codex, Claude Code, OpenClaw, or another coding/resea
 | `001` | file read/write, basic search optional | use prior reports only |
 | `002` | web search or user-provided source pack | do not independently validate demand; mark as source-limited |
 | `003` | web search, source reading, evidence ledger updates | do not independently validate supply constraints |
+| `003_component_decomposition` | web search, technical/source reading, supplier and component mapping | mark component layer incomplete; do not claim upstream bottlenecks |
 | `004` | web search, company filing access, cross-market ticker resolution | candidate list must be labeled incomplete |
 | `005` | evidence ledger, source index, file read/write | none |
 | `006` | Tushare for A-shares, Yahoo CLI for overseas stocks, market data files | write explicit market-data gap; do not infer missing valuation |

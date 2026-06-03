@@ -9,7 +9,8 @@
 5. `CONTEXT_PACK_PROTOCOL.md`
 6. `RUN_TRACE_SCHEMA.md`
 7. `MEMORY_TAXONOMY.md`
-8. `templates/run_checklist.md`
+8. `COMPONENT_DECOMPOSITION_PROTOCOL.md`
+9. `templates/run_checklist.md`
 
 ## 强制规则
 
@@ -23,6 +24,8 @@
 - HTML 页面必须链接回 Markdown 报告和 source index，并保留证据边界、数据日期和“不构成投资建议”提示。
 - 启动前必须运行或手工填写 capability preflight；没有 web search 且没有用户提供 source pack 时，不得独立执行 `002` 到 `005`。
 - 搜索密集步骤必须创建或更新 search packet，重要来源必须进入 source index 或 evidence ledger。
+- 设备、主机、系统、材料、制造工艺类主题必须执行 component decomposition；不得只停留在龙头、主机厂或系统集成商层面。
+- component decomposition 应输出 `reports/003_component_decomposition.md`，并把二级/三级零部件、关键材料、工艺设备、后市场和认证壁垒传递到 `004_targets.md`。
 - 每个 run 应维护 `state/run_trace.jsonl`，记录搜索、数据拉取、报告生成、校验和 HTML 输出等事件。
 - 每次运行结束前执行：
 

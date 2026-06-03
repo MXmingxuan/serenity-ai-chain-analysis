@@ -42,6 +42,7 @@ flowchart TD
         P3["CONTEXT_PACK_PROTOCOL.md<br/>just-in-time context 加载"]
         P4["RUN_TRACE_SCHEMA.md<br/>append-only 执行日志"]
         P5["MEMORY_TAXONOMY.md<br/>规则、状态、实体、证据、执行记忆分层"]
+        P6["COMPONENT_DECOMPOSITION_PROTOCOL.md<br/>主机/模块/零部件/材料/工艺拆解"]
     end
 
     P1 --> B
@@ -49,12 +50,14 @@ flowchart TD
     P3 --> F["Context Pack<br/>上一步报告 + 索引 + 必要全文"]
     P4 --> G["Run Trace<br/>state/run_trace.jsonl"]
     P5 --> H["Memory Updates<br/>事实优先、可覆盖、必须带来源"]
+    P6 --> CD["Component Decomposition<br/>reports/003_component_decomposition.md"]
 
     D --> S1["000 Scope"]
     S1 --> S2["001 产业链位置"]
     S2 --> S3["002 需求验证"]
     S3 --> S4["003 供给瓶颈"]
     S4 --> S5["004 跨市场标的映射"]
+    CD --> S5
     S5 --> S6["005 证据分级"]
     S6 --> S7["006 结构化市场定价<br/>A股 Tushare / 海外 Yahoo CLI"]
     S7 --> S8["007 风险与反证"]
@@ -89,6 +92,7 @@ flowchart TD
 - `CONTEXT_PACK_PROTOCOL.md`：000-009 每一步的 just-in-time context 加载规则。
 - `RUN_TRACE_SCHEMA.md`：`state/run_trace.jsonl` 的执行日志格式。
 - `MEMORY_TAXONOMY.md`：项目规则、run state、entity、evidence、execution memory 的分层规则。
+- `COMPONENT_DECOMPOSITION_PROTOCOL.md`：设备/主机/系统类主题的上游零部件、材料、工艺、后市场拆解规则。
 - `AGENTS.md`：给后续 agent 的项目入口规则。
 - `PROJECT_RETRO_AND_OPTIMIZATION.md`：基于两个案例复盘后的问题清单、根因和优化方向。
 
@@ -152,6 +156,7 @@ python scripts\validate_run.py "research_runs\YYYY-MM-DD-研究对象"
 - 证据台账和市场数据 CSV 是否可解析；
 - `004_targets.md` 是否有跨市场覆盖；
 - `symbol_universe.csv` 是否只覆盖单一市场；
+- 设备/主机/系统类主题是否缺少 component decomposition；
 - 是否误写入 Tushare token。
 
 启动一个新 run 前，建议先运行能力预检：

@@ -6,7 +6,7 @@
 ## 启动前
 
 - [ ] 已确认研究对象。
-- [ ] 已读取 `AGENT_FRAMEWORK.md`、`FRAMEWORK_ADDENDUM_CROSS_MARKET.md`、`AGENT_CAPABILITY_MATRIX.md`、`SEARCH_PROTOCOL.md`、`CONTEXT_PACK_PROTOCOL.md`、`RUN_TRACE_SCHEMA.md`、`MEMORY_TAXONOMY.md`。
+- [ ] 已读取 `AGENT_FRAMEWORK.md`、`FRAMEWORK_ADDENDUM_CROSS_MARKET.md`、`AGENT_CAPABILITY_MATRIX.md`、`SEARCH_PROTOCOL.md`、`CONTEXT_PACK_PROTOCOL.md`、`RUN_TRACE_SCHEMA.md`、`MEMORY_TAXONOMY.md`、`COMPONENT_DECOMPOSITION_PROTOCOL.md`。
 - [ ] 已运行或手工填写 capability preflight，并生成 `state/capability_report.json`。
 - [ ] 已区分 `primary_focus` 和 `required_comparison_markets`。
 - [ ] 如果用户说“以某市场为重点”，已确认这不是“只研究该市场”。
@@ -25,10 +25,13 @@
 - [ ] 第 002 步质量门槛：已创建或更新 search packet。
 - [ ] `003.md`：供给弹性、瓶颈评分、利润转化。
 - [ ] 第 003 步质量门槛：已创建或更新 search packet。
+- [ ] 如果是设备/主机/系统/材料/工艺类主题，已创建 `reports/003_component_decomposition.md`。
+- [ ] component decomposition 已拆出主机/OEM、一级模块、二级零部件、关键材料、制造工艺/设备、后市场/耗材、认证/客户导入。
 - [ ] `004.md`：标的映射、A/B/C 分类、利润兑现路径。
 - [ ] 第 004 步质量门槛：已创建或更新 search packet。
 - [ ] 第 004 步质量门槛：候选清单已覆盖美股、港股、A 股和其他相关市场，或明确写出某市场无直接标的/数据不可得的原因。
 - [ ] 第 004 步质量门槛：海外龙头、区域供应商、下游需求方已作为竞争/对标宇宙记录。
+- [ ] 第 004 步质量门槛：已把 component decomposition 中的上游零部件/材料/工艺供应商传递到候选池，或写明缺口原因。
 - [ ] `005.md`：证据分级、事实/推理/叙事拆分。
 - [ ] 第 006 步前：更新 `market_data/symbol_universe.csv`，且覆盖 004 的 A/B 候选和关键海外对标。
 - [ ] 第 006 步前：拉取或生成 `market_data/price_snapshot.csv`。
@@ -42,6 +45,7 @@
 - [ ] `008.md`：综合研究报告。
 - [ ] `009.md`：个人投资研究卡片。
 - [ ] 第 008/009 步质量门槛：已检查 evidence gaps 和 disconfirmation，未把研究优先级写成买入建议。
+- [ ] 第 008/009 步质量门槛：设备类主题的最终报告包含“上游零部件拆解 / Component Decomposition / 二级或三级零部件”相关段落。
 
 ## 每轮质量门槛
 

@@ -148,3 +148,25 @@
 - 写一个 `scripts/build_market_data.py`，自动根据 `symbol_universe.csv` 调 Tushare/Yahoo。
 - 把 `evidence_ledger.csv` 迁移为 JSONL，降低 CSV 转义风险。
 - 为每个行业建立“全球对标公司库”，比如电力设备、液冷、光模块、封装、PCB。
+# 追加优化：Component Decomposition 质量门槛
+
+在【数据中心燃气发电机】案例中，流程虽然覆盖了需求、主机/OEM、跨市场候选和结构化市场数据，但研究粒度停在系统/OEM 层，未继续拆解燃机热端部件、叶片、燃烧室、热障涂层、高温合金、精密铸造、后市场服务等更上游环节。
+
+根因：
+
+- prompt chain 原本支持“供给瓶颈”和“标的映射”，但没有强制设备类主题做二级/三级零部件拆解；
+- search packet 容易围绕主题词和龙头公司，而漏掉 component/material/process/service 关键词；
+- validator 之前只检查跨市场和 market data，不检查拆解深度。
+
+已采取的架构优化：
+
+- 新增 `COMPONENT_DECOMPOSITION_PROTOCOL.md`；
+- 新增 `templates/component_decomposition.md`；
+- 更新 `AGENTS.md`、`SEARCH_PROTOCOL.md`、`CONTEXT_PACK_PROTOCOL.md`、`templates/run_checklist.md`、`templates/research_state.yaml`；
+- 扩展 `scripts/validate_run.py`，对设备/主机/系统/材料/工艺类主题缺少 component decomposition 的情况给出 warning。
+
+后续要求：
+
+- 设备类主题在 `003_supply.md` 之后、`004_targets.md` 之前，应新增 `reports/003_component_decomposition.md`；
+- `004_targets.md` 必须把主机/OEM、一级模块、二级零部件、关键材料、工艺设备、后市场/耗材、认证壁垒分开；
+- 最终报告必须说明真实瓶颈是在主机层，还是更上游的零部件/材料/工艺层。

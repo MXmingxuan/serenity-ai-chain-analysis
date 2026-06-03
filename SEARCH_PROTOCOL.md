@@ -8,6 +8,7 @@ Search packets are required for:
 
 - `002_demand`
 - `003_supply`
+- `003_component_decomposition` when the theme is equipment/system/material/process-heavy
 - `004_targets`
 - `005_evidence_audit` when new sources are added
 - `006_pricing` when sell-side coverage, social heat, or consensus narrative is searched
@@ -36,6 +37,19 @@ Required fields:
 - rejected sources;
 - coverage gaps;
 - effect on evidence ledger or next step.
+
+## Component Search Expansion
+
+For equipment-heavy themes, search queries must include component, material, process, and service terms, not only the headline theme and OEM names.
+
+Examples:
+
+- `gas turbine blades vanes combustor liners superalloy suppliers`
+- `燃气轮机 叶片 热端部件 高温合金 上市公司`
+- `direct liquid cooling manifold quick connector pump valve seal supplier`
+- `HBM advanced packaging substrate bonding equipment material supplier`
+
+If component-level search is skipped, record it as a coverage gap in the search packet.
 
 ## Evidence Handling
 

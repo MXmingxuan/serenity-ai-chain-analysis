@@ -8,6 +8,7 @@ investment conclusion.
 from __future__ import annotations
 
 import csv
+import json
 import os
 import sys
 from pathlib import Path
@@ -26,6 +27,54 @@ EXPECTED_REPORTS = [
 ]
 
 URL_MARKERS = ("http://", "https://", "file:", ".md", ".pdf", ".csv")
+
+COMPONENT_THEME_TRIGGERS = (
+    "equipment",
+    "machine",
+    "machinery",
+    "generator",
+    "gas turbine",
+    "turbine",
+    "engine",
+    "power system",
+    "liquid cooling",
+    "cooling",
+    "optical module",
+    "packaging",
+    "server",
+    "material",
+    "process",
+    "设备",
+    "主机",
+    "系统",
+    "发电机",
+    "燃气",
+    "燃机",
+    "轮机",
+    "发动机",
+    "液冷",
+    "光模块",
+    "封装",
+    "材料",
+    "工艺",
+    "零部件",
+    "部件",
+)
+
+COMPONENT_SECTION_MARKERS = (
+    "component decomposition",
+    "upstream component",
+    "second-level",
+    "third-level",
+    "hot gas path",
+    "上游零部件",
+    "二级零部件",
+    "三级零部件",
+    "核心部件",
+    "关键材料",
+    "热端部件",
+    "制造工艺",
+)
 
 MARKET_ALIASES = {
     "US": {"US", "USA", "美股", "NYSE", "NASDAQ"},
@@ -57,6 +106,34 @@ def normalize_market(raw: str) -> str:
     if upper:
         return upper
     return ""
+
+
+def is_component_heavy_theme(run_dir: Path, reports_dir: Path) -> bool:
+    texts: list[str] = [run_dir.name]
+    for path in [
+        run_dir / "state" / "research_state.yaml",
+        reports_dir / "000_scope.md",
+        reports_dir / "001_value_chain.md",
+        reports_dir / "003_supply.md",
+    ]:
+        if path.exists():
+            texts.append(read_text(path))
+    combined = "\n".join(texts).lower()
+    return any(trigger.lower() in combined for trigger in COMPONENT_THEME_TRIGGERS)
+
+
+def has_component_decomposition(run_dir: Path, reports_dir: Path) -> bool:
+    component_report = reports_dir / "003_component_decomposition.md"
+    if component_report.exists():
+        return True
+    candidate_paths = [
+        reports_dir / "003_supply.md",
+        reports_dir / "004_targets.md",
+        reports_dir / "008_final_report.md",
+        run_dir / "sources" / "search_packet.md",
+    ]
+    text = "\n".join(read_text(path) for path in candidate_paths if path.exists()).lower()
+    return any(marker.lower() in text for marker in COMPONENT_SECTION_MARKERS)
 
 
 def main(argv: list[str]) -> int:
@@ -97,8 +174,6 @@ def main(argv: list[str]) -> int:
             if not line.strip():
                 continue
             try:
-                import json
-
                 event = json.loads(line)
             except Exception as exc:
                 errors.append(f"run_trace.jsonl parse failed at line {line_no}: {exc}")
@@ -210,6 +285,12 @@ def main(argv: list[str]) -> int:
                 warnings.append("004_targets.md appears cross-market limited, but contains a gap explanation")
             else:
                 warnings.append("004_targets.md appears to have weak cross-market coverage")
+
+    if is_component_heavy_theme(run_dir, reports_dir) and not has_component_decomposition(run_dir, reports_dir):
+        warnings.append(
+            "component-heavy theme may be missing component decomposition: "
+            "add reports/003_component_decomposition.md or a component decomposition section"
+        )
 
     pricing_path = reports_dir / "006_pricing.md"
     if pricing_path.exists():

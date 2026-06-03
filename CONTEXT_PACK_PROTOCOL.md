@@ -22,6 +22,7 @@ The prompt chain should use just-in-time context. Load the minimum useful contex
 | `001` | `000_scope.md`, current state | market data |
 | `002` | `001_value_chain.md`, demand search packet | full candidate tables |
 | `003` | `002_demand.md`, supply sources | all market pricing files |
+| `003_component_decomposition` | `003_supply.md`, source index, component search packet | market pricing files unless mapping listed suppliers |
 | `004` | `003_supply.md`, cross-market rules | running `006` data before candidates are stable |
 | `005` | reports `000-004`, evidence ledger, source index | introducing unsupported new thesis |
 | `006` | `004_targets.md`, symbol universe, market data | inferring missing prices or valuations |
@@ -35,3 +36,4 @@ The prompt chain should use just-in-time context. Load the minimum useful contex
 - Keep source URLs, filing names, dates, and evidence grade.
 - If a report is long, load headings and tables first, then full sections only as needed.
 - Do not carry stale assumptions forward without checking `open_questions` and `disconfirmation`.
+- For equipment-heavy themes, carry `reports/003_component_decomposition.md` into `004_targets.md`, `005_evidence_audit.md`, and `008_final_report.md`.

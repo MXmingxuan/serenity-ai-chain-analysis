@@ -83,6 +83,18 @@ supply:
   bottleneck_duration: ""
   profit_conversion_view: ""
 
+component_decomposition:
+  required: "unknown"
+  report_file: "reports/003_component_decomposition.md"
+  system_oems: []
+  first_level_modules: []
+  second_level_parts: []
+  critical_materials: []
+  process_equipment: []
+  aftermarket_services: []
+  certification_bottlenecks: []
+  missing_layers: []
+
 targets:
   high_priority: []
   watchlist: []
